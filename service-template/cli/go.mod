@@ -1,4 +1,4 @@
-module github.com/manish-aggarwal/go-initializer/service-template/cli
+module github.com/manish-aggarwal-89/go-initializer/service-template/cli
 
 go 1.22
 
