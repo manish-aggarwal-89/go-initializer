@@ -3,18 +3,17 @@ package controller
 import (
 	"context"
 	"encoding/json"
+	"github.com/labstack/echo/v4"
+	commonUtil "github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/shared/util"
+	"github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/common"
+	bookRQ "github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/request/book"
+	bookRS "github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/response/book"
 	"io"
 	"net/http"
 	"{{MODULE_NAME}}/internal/service"
 	"{{MODULE_NAME}}/internal/shared"
 	"{{MODULE_NAME}}/internal/shared/bau"
 	"{{MODULE_NAME}}/internal/shared/deps"
-	"{{MODULE_NAME}}/internal/shared/util"
-
-	commonUtil "github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/shared/util"
-	"github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/common"
-	bookRQ "github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/request/book"
-	bookRS "github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/response/book"
 )
 
 type BookingController struct {
