@@ -1,0 +1,4997 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Swagger tools for {{PROVIDER}} integrator",
+        "title": "{{SERVICE_TITLE}}",
+        "contact": {
+            "name": "@supplyTeam"
+        },
+        "version": "1.0"
+    },
+    "paths": {
+        "/application/health": {
+            "get": {
+                "description": "Endpoint to check health service",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "health"
+                ],
+                "summary": "Endpoint to check health service",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/booking": {
+            "post": {
+                "description": "endpoint for booking process",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "prime-booking"
+                ],
+                "summary": "Booking endpoint",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/book.IntegratorBookRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/book.BookResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/cancel-booking": {
+            "post": {
+                "description": "Endpoint for Cancel Booking process",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "prime-booking"
+                ],
+                "summary": "Cancel-Booking endpoint",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/cancel_book.IntegratorCancelBookRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/cancelbook.CancelBookResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/credential": {
+            "get": {
+                "description": "Find credential with paginated",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential"
+                ],
+                "summary": "Endpoint to find credential with paginated",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "description": "Page",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 10,
+                        "description": "Size",
+                        "name": "size",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "ID",
+                            "SUPPLIER",
+                            "USERNAME",
+                            "DISTRIBUTION"
+                        ],
+                        "type": "string",
+                        "default": "ID",
+                        "description": "Sort",
+                        "name": "sort",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "enum": [
+                            "ASC",
+                            "DESC"
+                        ],
+                        "type": "string",
+                        "default": "DESC",
+                        "description": "Sort Direction",
+                        "name": "sortDirection",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "name": "distributionType",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "supplier",
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "name": "username",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create credential",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential"
+                ],
+                "summary": "Endpoint to create credential",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.Credential"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/credential-master-data": {
+            "get": {
+                "description": "Find all credential master data map",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential-master-data"
+                ],
+                "summary": "Endpoint to find all credential master data map",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "description": "endpoint for creting the credential master data",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential-master-data"
+                ],
+                "summary": "Create credential master data endpoint",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_repository.CredentialMasterData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/credential-master-data/list": {
+            "get": {
+                "description": "Find all credential master data list",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential-master-data"
+                ],
+                "summary": "Endpoint to find all credential master data list",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/credential-master-data/{id}": {
+            "put": {
+                "description": "Update credential master data by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential-master-data"
+                ],
+                "summary": "Endpoint to update credential master data by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID credential master data",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_repository.CredentialMasterData"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete credential master data by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential-master-data"
+                ],
+                "summary": "Endpoint to delete credential master data by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID Credential Master Data",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/credential/alert": {
+            "get": {
+                "description": "Find credential log by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential"
+                ],
+                "summary": "Endpoint to send the alert",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/credential/log/{id}": {
+            "get": {
+                "description": "Find credential log by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential"
+                ],
+                "summary": "Endpoint to find credential log by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID credential",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/credential/{id}": {
+            "get": {
+                "description": "Find credential by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential"
+                ],
+                "summary": "Endpoint to find credential by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID credential",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "description": "Update credential by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential"
+                ],
+                "summary": "Endpoint to update credential by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID credential",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.Credential"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete credential by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "credential"
+                ],
+                "summary": "Endpoint to delete credential by id",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID credential",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/issued": {
+            "post": {
+                "description": "Endpoint for issued process",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "prime-booking"
+                ],
+                "summary": "Issued endpoint",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/issued.IntegratorIssuedRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/issued.IssuedResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/search": {
+            "post": {
+                "description": "Endpoint for search process",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "prime-booking"
+                ],
+                "summary": "Search endpoint",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/fare.IntegratorFareRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/fare.FlightIntegratorSearchResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/system-parameter": {
+            "get": {
+                "description": "Find all system parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system_parameter"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 10,
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "default": 0,
+                        "description": "Page",
+                        "name": "page",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "post": {
+                "description": "Create system parameter",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system_parameter"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameter"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/system-parameter/variable/{variable}": {
+            "get": {
+                "description": "Find system parameter by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system_parameter"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID system parameter",
+                        "name": "variable",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameterRepository"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/system-parameter/{id}": {
+            "get": {
+                "description": "Find system parameter by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system_parameter"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID system parameter",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameterRepository"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "put": {
+                "description": "Update system parameter by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system_parameter"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID system parameter",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameter"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete system parameter by id",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "system_parameter"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "ID system parameter",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        },
+        "/{{BASE_PATH}}/v2/search": {
+            "post": {
+                "description": "Endpoint for search process",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "prime-booking"
+                ],
+                "summary": "Search endpoint",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "default": "TIKETCOM",
+                        "description": "Authentication header",
+                        "name": "storeId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "WEB",
+                        "description": "Authentication header",
+                        "name": "channelId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "321321321",
+                        "description": "Authentication header",
+                        "name": "requestId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "guest",
+                        "description": "Authentication header",
+                        "name": "username",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "default": "GATEWAY",
+                        "description": "Authentication header",
+                        "name": "serviceId",
+                        "in": "header",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "resellerId",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Authentication header",
+                        "name": "identity",
+                        "in": "header"
+                    },
+                    {
+                        "description": "Request Body",
+                        "name": "message",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/fare.IntegratorFareRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/fare.FlightIntegratorSearchResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "book.Baggage": {
+            "type": "object",
+            "properties": {
+                "departureBaggage": {
+                    "type": "integer"
+                },
+                "departureBaggages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.BaggageDetailBook"
+                    }
+                },
+                "returnBaggage": {
+                    "type": "integer"
+                },
+                "returnBaggages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.BaggageDetailBook"
+                    }
+                }
+            }
+        },
+        "book.BaggageDetailBook": {
+            "type": "object",
+            "properties": {
+                "unitOfMeasure": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "integer"
+                }
+            }
+        },
+        "book.BookBreakdownInfo": {
+            "type": "object",
+            "properties": {
+                "originalAdult": {
+                    "$ref": "#/definitions/book.BookFareDetail"
+                },
+                "originalBaggage": {
+                    "type": "number"
+                },
+                "originalChild": {
+                    "$ref": "#/definitions/book.BookFareDetail"
+                },
+                "originalInfant": {
+                    "$ref": "#/definitions/book.BookFareDetail"
+                }
+            }
+        },
+        "book.BookDetail": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/fare.Account"
+                },
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "bookingCode": {
+                    "type": "string"
+                },
+                "bookingDate": {
+                    "type": "string"
+                },
+                "bookingExpired": {
+                    "type": "string"
+                },
+                "corporateCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "invoiceNumber": {
+                    "type": "string"
+                },
+                "itineraries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.BookItinerary"
+                    }
+                },
+                "logId": {
+                    "type": "string"
+                },
+                "originalBookingFare": {
+                    "$ref": "#/definitions/book.BookFare"
+                },
+                "originalCurrency": {
+                    "type": "string"
+                },
+                "passengerFareInfo": {
+                    "$ref": "#/definitions/book.PassengerFareInfo"
+                },
+                "transactionId": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.BookFare": {
+            "type": "object",
+            "properties": {
+                "adultFare": {
+                    "type": "number"
+                },
+                "agentFee": {
+                    "type": "number"
+                },
+                "balanceDue": {
+                    "type": "number"
+                },
+                "bookedFare": {
+                    "type": "number"
+                },
+                "childFare": {
+                    "type": "number"
+                },
+                "commission": {
+                    "type": "number"
+                },
+                "commissionPercent": {
+                    "type": "number"
+                },
+                "discount": {
+                    "type": "number"
+                },
+                "discountCode": {
+                    "type": "string"
+                },
+                "fare": {
+                    "type": "number"
+                },
+                "fareExcludeSsr": {
+                    "type": "number"
+                },
+                "incentive": {
+                    "type": "number"
+                },
+                "infantFare": {
+                    "type": "number"
+                },
+                "markup": {
+                    "type": "number"
+                },
+                "nta": {
+                    "type": "number"
+                },
+                "privateMarkup": {
+                    "type": "number"
+                },
+                "ssrFee": {
+                    "$ref": "#/definitions/book.SsrFee"
+                },
+                "upselling": {
+                    "type": "number"
+                },
+                "voucher": {
+                    "type": "number"
+                },
+                "voucherCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.BookFareDetail": {
+            "type": "object",
+            "properties": {
+                "agentFee": {
+                    "type": "number"
+                },
+                "baseFare": {
+                    "type": "number"
+                },
+                "breakdownTaxes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.TaxType"
+                    }
+                },
+                "commission": {
+                    "type": "number"
+                },
+                "discount": {
+                    "type": "number"
+                },
+                "fare": {
+                    "type": "number"
+                },
+                "iwjr": {
+                    "type": "number"
+                },
+                "markup": {
+                    "type": "number"
+                },
+                "nta": {
+                    "type": "number"
+                },
+                "privateMarkup": {
+                    "type": "number"
+                },
+                "psc": {
+                    "type": "number"
+                },
+                "tax": {
+                    "type": "number"
+                }
+            }
+        },
+        "book.BookItinerary": {
+            "type": "object",
+            "properties": {
+                "adult": {
+                    "type": "integer"
+                },
+                "breakdownInfo": {
+                    "$ref": "#/definitions/book.BookBreakdownInfo"
+                },
+                "cabinClass": {
+                    "$ref": "#/definitions/enum.CabinType"
+                },
+                "child": {
+                    "type": "integer"
+                },
+                "infant": {
+                    "type": "integer"
+                },
+                "international": {
+                    "type": "integer"
+                },
+                "markupInfo": {
+                    "$ref": "#/definitions/book.BookMarkupInfo"
+                },
+                "originalAdultFare": {
+                    "type": "number"
+                },
+                "originalChildFare": {
+                    "type": "number"
+                },
+                "originalCurrency": {
+                    "type": "string"
+                },
+                "originalFare": {
+                    "type": "number"
+                },
+                "originalInfantFare": {
+                    "type": "number"
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.BookSchedule"
+                    }
+                }
+            }
+        },
+        "book.BookMarkupInfo": {
+            "type": "object",
+            "properties": {
+                "classMarkup": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "book.BookResponse": {
+            "type": "object",
+            "properties": {
+                "bookDetail": {
+                    "$ref": "#/definitions/book.BookDetail"
+                },
+                "integratorBookRequest": {
+                    "$ref": "#/definitions/book.IntegratorBookRequest"
+                },
+                "mandatoryRequest": {
+                    "$ref": "#/definitions/common.MandatoryRequest"
+                }
+            }
+        },
+        "book.BookSchedule": {
+            "type": "object",
+            "properties": {
+                "aircraftType": {
+                    "type": "string"
+                },
+                "arrivalDate": {
+                    "type": "string"
+                },
+                "arrivalTerminal": {
+                    "type": "string"
+                },
+                "baggage": {
+                    "$ref": "#/definitions/model.Baggage"
+                },
+                "connectings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Connecting"
+                    }
+                },
+                "departureDate": {
+                    "type": "string"
+                },
+                "departureTerminal": {
+                    "type": "string"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "fareBasisCode": {
+                    "type": "string"
+                },
+                "fareBasisCodes": {
+                    "$ref": "#/definitions/model.FareBasisCode"
+                },
+                "fareClass": {
+                    "type": "string"
+                },
+                "isPromo": {
+                    "type": "integer"
+                },
+                "marketingAirline": {
+                    "type": "string"
+                },
+                "marketingFlightNumber": {
+                    "type": "string"
+                },
+                "marriageGroup": {
+                    "type": "string"
+                },
+                "operatingAirline": {
+                    "$ref": "#/definitions/book.OperatingAirline"
+                },
+                "origin": {
+                    "type": "string"
+                },
+                "stopQuantity": {
+                    "type": "string"
+                },
+                "supplierBookingCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.Contact": {
+            "type": "object",
+            "properties": {
+                "dob": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "emailAgent": {
+                    "type": "string"
+                },
+                "emailPassenger": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "phoneCode": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "profileId": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.IdentityNumber": {
+            "type": "object",
+            "properties": {
+                "cipherText": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.IntegratorBookRequest": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/fare.Account"
+                },
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "adult": {
+                    "type": "integer"
+                },
+                "child": {
+                    "type": "integer"
+                },
+                "commission": {
+                    "type": "number"
+                },
+                "contact": {
+                    "$ref": "#/definitions/book.Contact"
+                },
+                "corporate": {
+                    "$ref": "#/definitions/fare.Corporate"
+                },
+                "countryId": {
+                    "type": "string"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "fareSellKey": {
+                    "type": "string"
+                },
+                "flightSelect": {
+                    "type": "string"
+                },
+                "infant": {
+                    "type": "integer"
+                },
+                "itineraries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.Itinerary"
+                    }
+                },
+                "journeySellKey": {
+                    "type": "string"
+                },
+                "maxBookRetry": {
+                    "type": "integer"
+                },
+                "multiFare": {
+                    "type": "boolean"
+                },
+                "paxes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.Pax"
+                    }
+                },
+                "promoCode": {
+                    "type": "string"
+                },
+                "sessionGroup": {
+                    "type": "string"
+                },
+                "sessionGroupType": {
+                    "type": "string"
+                },
+                "viaSelect": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.Itinerary": {
+            "type": "object",
+            "properties": {
+                "airline": {
+                    "type": "string"
+                },
+                "arrival": {
+                    "type": "string"
+                },
+                "blacklistMap": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "brandedFare": {
+                    "$ref": "#/definitions/fare.BrandedFare"
+                },
+                "cabinClass": {
+                    "$ref": "#/definitions/enum.CabinType"
+                },
+                "connecting": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "international": {
+                    "type": "integer"
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.Schedule"
+                    }
+                }
+            }
+        },
+        "book.Meals": {
+            "type": "object",
+            "properties": {
+                "departureMeals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.MealsDetail"
+                    }
+                },
+                "returnMeals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.MealsDetail"
+                    }
+                }
+            }
+        },
+        "book.MealsDetail": {
+            "type": "object",
+            "properties": {
+                "airline": {
+                    "type": "string"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "mealsLegs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.MealsLeg"
+                    }
+                },
+                "operatingAirline": {
+                    "type": "string"
+                },
+                "operatingFlightNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.MealsLeg": {
+            "type": "object",
+            "properties": {
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "mealsCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "book.OperatingAirline": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.PassengerFareInfo": {
+            "type": "object",
+            "properties": {
+                "originalAdult": {
+                    "$ref": "#/definitions/book.BookFareDetail"
+                },
+                "originalBaggage": {
+                    "type": "number"
+                },
+                "originalChild": {
+                    "$ref": "#/definitions/book.BookFareDetail"
+                },
+                "originalInfant": {
+                    "$ref": "#/definitions/book.BookFareDetail"
+                }
+            }
+        },
+        "book.Passport": {
+            "type": "object",
+            "properties": {
+                "country": {
+                    "type": "string"
+                },
+                "expired": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "issuingDate": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.Pax": {
+            "type": "object",
+            "properties": {
+                "baggage": {
+                    "$ref": "#/definitions/book.Baggage"
+                },
+                "dob": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "frequentFlyer": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "identityNumber": {
+                    "$ref": "#/definitions/book.IdentityNumber"
+                },
+                "insurance": {
+                    "type": "boolean"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "meals": {
+                    "$ref": "#/definitions/book.Meals"
+                },
+                "nationality": {
+                    "type": "string"
+                },
+                "originalFirstName": {
+                    "type": "string"
+                },
+                "originalLastName": {
+                    "type": "string"
+                },
+                "passport": {
+                    "$ref": "#/definitions/book.Passport"
+                },
+                "paxNumber": {
+                    "type": "integer"
+                },
+                "phoneCode": {
+                    "type": "string"
+                },
+                "phoneNumber": {
+                    "type": "string"
+                },
+                "profileId": {
+                    "type": "string"
+                },
+                "seats": {
+                    "$ref": "#/definitions/book.Seats"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "travelPurpose": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.Schedule": {
+            "type": "object",
+            "properties": {
+                "arrivalDate": {
+                    "type": "string"
+                },
+                "departureDate": {
+                    "type": "string"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "fareBasisCodes": {
+                    "$ref": "#/definitions/model.FareBasisCode"
+                },
+                "fareClass": {
+                    "type": "string"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "marketingAirline": {
+                    "type": "string"
+                },
+                "marriageGroup": {
+                    "type": "string"
+                },
+                "operatingAirline": {
+                    "$ref": "#/definitions/book.OperatingAirline"
+                },
+                "origin": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.SeatDetail": {
+            "type": "object",
+            "properties": {
+                "airline": {
+                    "type": "string"
+                },
+                "arrival": {
+                    "type": "string"
+                },
+                "category": {
+                    "$ref": "#/definitions/seat.SeatCategory"
+                },
+                "deckNumber": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "group": {
+                    "type": "string"
+                },
+                "operatingAirline": {
+                    "type": "string"
+                },
+                "operatingFlightNumber": {
+                    "type": "string"
+                },
+                "seatNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.Seats": {
+            "type": "object",
+            "properties": {
+                "departureSeats": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SeatDetail"
+                    }
+                },
+                "returnSeats": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SeatDetail"
+                    }
+                }
+            }
+        },
+        "book.SsrBaggagesLeg": {
+            "type": "object",
+            "properties": {
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "fare": {
+                    "type": "number"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "weight": {
+                    "type": "integer"
+                },
+                "weightType": {
+                    "type": "string"
+                }
+            }
+        },
+        "book.SsrFee": {
+            "type": "object",
+            "properties": {
+                "baggageFare": {
+                    "type": "number"
+                },
+                "mealsFare": {
+                    "type": "number"
+                },
+                "medicalsFare": {
+                    "type": "number"
+                },
+                "seatsFare": {
+                    "type": "number"
+                },
+                "ssrFare": {
+                    "type": "number"
+                },
+                "ssrItineraries": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrItinerary"
+                    }
+                }
+            }
+        },
+        "book.SsrItinerary": {
+            "type": "object",
+            "properties": {
+                "ssrPaxBaggages": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrPaxBaggages"
+                    }
+                },
+                "ssrPaxMeals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrPaxMeals"
+                    }
+                },
+                "ssrPaxMedicals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrPaxMedicals"
+                    }
+                },
+                "ssrPaxSeats": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrPaxSeats"
+                    }
+                }
+            }
+        },
+        "book.SsrMealsDetail": {
+            "type": "object",
+            "properties": {
+                "mealsCode": {
+                    "type": "string"
+                },
+                "mealsPrice": {
+                    "type": "number"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "book.SsrMealsLeg": {
+            "type": "object",
+            "properties": {
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "ssrMealsDetails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrMealsDetail"
+                    }
+                }
+            }
+        },
+        "book.SsrMedicalsDetail": {
+            "type": "object",
+            "properties": {
+                "medicalCode": {
+                    "type": "string"
+                },
+                "medicalPrice": {
+                    "type": "number"
+                },
+                "success": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "book.SsrMedicalsLeg": {
+            "type": "object",
+            "properties": {
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "ssrMedicalsDetails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrMedicalsDetail"
+                    }
+                }
+            }
+        },
+        "book.SsrPaxBaggages": {
+            "type": "object",
+            "properties": {
+                "paxNumber": {
+                    "type": "integer"
+                },
+                "ssrBaggagesLegs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrBaggagesLeg"
+                    }
+                }
+            }
+        },
+        "book.SsrPaxMeals": {
+            "type": "object",
+            "properties": {
+                "paxNumber": {
+                    "type": "integer"
+                },
+                "ssrMealsLegs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrMealsLeg"
+                    }
+                }
+            }
+        },
+        "book.SsrPaxMedicals": {
+            "type": "object",
+            "properties": {
+                "paxNumber": {
+                    "type": "integer"
+                },
+                "ssrMedicalsLegs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrMedicalsLeg"
+                    }
+                }
+            }
+        },
+        "book.SsrPaxSeats": {
+            "type": "object",
+            "properties": {
+                "paxNumber": {
+                    "type": "integer"
+                },
+                "ssrSeatLegs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/book.SsrSeatsLeg"
+                    }
+                }
+            }
+        },
+        "book.SsrSeatsLeg": {
+            "type": "object",
+            "properties": {
+                "airline": {
+                    "type": "string"
+                },
+                "arrival": {
+                    "type": "string"
+                },
+                "deckNumber": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "fare": {
+                    "type": "number"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "operatingAirline": {
+                    "type": "string"
+                },
+                "operatingFlightNumber": {
+                    "type": "string"
+                },
+                "seatCategory": {
+                    "type": "string"
+                },
+                "seatGroup": {
+                    "type": "string"
+                },
+                "seatNumber": {
+                    "type": "string"
+                },
+                "success": {
+                    "type": "boolean"
+                },
+                "totalFare": {
+                    "type": "number"
+                }
+            }
+        },
+        "cancel_book.IntegratorCancelBookRequest": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/fare.Account"
+                },
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "bookingCode": {
+                    "type": "string"
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "sessionGroup": {
+                    "type": "string"
+                },
+                "sessionGroupType": {
+                    "type": "string"
+                },
+                "transactionId": {
+                    "type": "string"
+                }
+            }
+        },
+        "cancelbook.CancelBookResponse": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/fare.Account"
+                },
+                "bookingCode": {
+                    "type": "string"
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "integratorCancelBookRequest": {
+                    "$ref": "#/definitions/cancel_book.IntegratorCancelBookRequest"
+                },
+                "mandatoryRequest": {
+                    "$ref": "#/definitions/common.MandatoryRequest"
+                }
+            }
+        },
+        "common.MandatoryRequest": {
+            "type": "object",
+            "required": [
+                "channelId",
+                "requestId",
+                "serviceId",
+                "storeId",
+                "username"
+            ],
+            "properties": {
+                "channelId": {
+                    "type": "string"
+                },
+                "identity": {
+                    "type": "string"
+                },
+                "requestId": {
+                    "type": "string"
+                },
+                "resellerId": {
+                    "type": "string"
+                },
+                "serviceId": {
+                    "type": "string"
+                },
+                "storeId": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "enum.CabinType": {
+            "type": "string",
+            "enum": [
+                "ECONOMY",
+                "BUSINESS",
+                "FIRST",
+                "PREMIER",
+                "PREMIUM_ECONOMY",
+                "PREMIUM_BUSINESS",
+                "PREMIUM_FIRST"
+            ],
+            "x-enum-varnames": [
+                "ECONOMY",
+                "BUSINESS",
+                "FIRST",
+                "PREMIER",
+                "PREMIUM_ECONOMY",
+                "PREMIUM_BUSINESS",
+                "PREMIUM_FIRST"
+            ]
+        },
+        "enum.CommissionType": {
+            "type": "string",
+            "enum": [
+                "PERCENTAGE",
+                "AMOUNT"
+            ],
+            "x-enum-varnames": [
+                "Percentage",
+                "Amount"
+            ]
+        },
+        "enum.ExchangeIssuanceNote": {
+            "type": "string",
+            "enum": [
+                "Price mismatch"
+            ],
+            "x-enum-varnames": [
+                "PriceMismatch"
+            ]
+        },
+        "enum.FareRequestSource": {
+            "type": "string",
+            "enum": [
+                "FD_RM",
+                "DYNAMIC_SUPPLIER_MAPPING",
+                "DEFAULT_RULE",
+                "SAM"
+            ],
+            "x-enum-varnames": [
+                "FD_RM",
+                "DYNAMIC_SUPPLIER_MAPPING",
+                "DEFAULT_RULE",
+                "SAM"
+            ]
+        },
+        "enum.IssuanceType": {
+            "type": "string",
+            "enum": [
+                "NORMAL",
+                "EXCHANGE"
+            ],
+            "x-enum-varnames": [
+                "Normal",
+                "Exchange"
+            ]
+        },
+        "enum.IssuedStatus": {
+            "type": "string",
+            "enum": [
+                "SUCCESS",
+                "FAILED",
+                "IN_PROGRESS",
+                "WAITING",
+                "CANCELED"
+            ],
+            "x-enum-varnames": [
+                "Success",
+                "Failed",
+                "InProgress",
+                "Waiting",
+                "Canceled"
+            ]
+        },
+        "enum.PenaltyStatus": {
+            "type": "string",
+            "enum": [
+                "YES",
+                "NO",
+                "UNKNOW"
+            ],
+            "x-enum-varnames": [
+                "PENALTY_STATUS_YES",
+                "PENALTY_STATUS_NO",
+                "PENALTY_STATUS_UNKNOWN"
+            ]
+        },
+        "enum.PenaltyType": {
+            "type": "string",
+            "enum": [
+                "RESCHEDULE",
+                "REFUND"
+            ],
+            "x-enum-varnames": [
+                "PENALTY_TYPE_RESCHEDULE",
+                "PENALTY_TYPE_REFUND"
+            ]
+        },
+        "exchange.ExchangeBookingDetails": {
+            "type": "object",
+            "properties": {
+                "bookingCode": {
+                    "type": "string"
+                },
+                "exchangeIssuanceDelayIntervalSecs": {
+                    "description": "Paxes                             []PaxResponse             `json:\"paxes\"`",
+                    "type": "integer"
+                },
+                "expiryDateTime": {
+                    "type": "string"
+                },
+                "note": {
+                    "$ref": "#/definitions/enum.ExchangeIssuanceNote"
+                }
+            }
+        },
+        "exchange_issued.ExchangeDetails": {
+            "type": "object",
+            "properties": {
+                "oldBookingCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.Account": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.BrandedFare": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.Corporate": {
+            "type": "object",
+            "properties": {
+                "airlines": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "corporateCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "corporateId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "fare.Currency": {
+            "type": "object",
+            "properties": {
+                "departureCurrency": {
+                    "type": "string"
+                },
+                "returnCurrency": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.Fare": {
+            "type": "object",
+            "properties": {
+                "brandedFare": {
+                    "$ref": "#/definitions/fare.BrandedFare"
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "fareClassDetails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.FareClassDetail"
+                    }
+                },
+                "fareClasses": {
+                    "type": "string"
+                },
+                "flexiFare": {
+                    "type": "boolean"
+                },
+                "inclusiveAddons": {
+                    "$ref": "#/definitions/fare.InclusiveAddons"
+                },
+                "originalAdultFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                },
+                "originalChildFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                },
+                "originalCurrency": {
+                    "type": "string"
+                },
+                "originalInfantFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                },
+                "originalTotalFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                },
+                "otherFares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.OtherFare"
+                    }
+                },
+                "privateFare": {
+                    "type": "boolean"
+                },
+                "supplierId": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.FareClassDetail": {
+            "type": "object",
+            "properties": {
+                "Destination": {
+                    "type": "string"
+                },
+                "fareClass": {
+                    "type": "string"
+                },
+                "origin": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.FareSegment": {
+            "type": "object",
+            "properties": {
+                "airlineCode": {
+                    "type": "string"
+                },
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "fareSegmentTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.FareSegmentType"
+                    }
+                },
+                "flightNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.FareSegmentDetail": {
+            "type": "object",
+            "properties": {
+                "agt": {
+                    "type": "number"
+                },
+                "airportTax": {
+                    "type": "number"
+                },
+                "baseFare": {
+                    "type": "number"
+                },
+                "commission": {
+                    "type": "number"
+                },
+                "fareClass": {
+                    "type": "string"
+                },
+                "flyThru": {
+                    "type": "number"
+                },
+                "gst": {
+                    "type": "number"
+                },
+                "iwjr": {
+                    "type": "number"
+                },
+                "nta": {
+                    "type": "number"
+                },
+                "psc": {
+                    "type": "number"
+                },
+                "seatAvailable": {
+                    "type": "integer"
+                },
+                "supplierDiscount": {
+                    "type": "number"
+                },
+                "tax": {
+                    "type": "number"
+                },
+                "total": {
+                    "type": "number"
+                },
+                "unidentified": {
+                    "type": "number"
+                }
+            }
+        },
+        "fare.FareSegmentType": {
+            "type": "object",
+            "properties": {
+                "originalAdultFare": {
+                    "$ref": "#/definitions/fare.FareSegmentDetail"
+                },
+                "originalChildFare": {
+                    "$ref": "#/definitions/fare.FareSegmentDetail"
+                },
+                "originalCurrency": {
+                    "type": "string"
+                },
+                "originalInfantFare": {
+                    "$ref": "#/definitions/fare.FareSegmentDetail"
+                },
+                "originalTotalFare": {
+                    "$ref": "#/definitions/fare.FareSegmentDetail"
+                },
+                "supplierId": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.FlightIntegratorSearchResponse": {
+            "type": "object",
+            "properties": {
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "corporateCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "departureFlights": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SearchAvailabilityOW"
+                    }
+                },
+                "integratorFareRequest": {
+                    "$ref": "#/definitions/fare.IntegratorFareRequest"
+                },
+                "multiCities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SearchMulticity"
+                    }
+                },
+                "page": {
+                    "type": "integer"
+                },
+                "returnFlights": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SearchAvailabilityOW"
+                    }
+                },
+                "roundTripCombines": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SearchCombine"
+                    }
+                },
+                "roundTrips": {
+                    "$ref": "#/definitions/fare.SearchAvailabilityRT"
+                },
+                "totalPage": {
+                    "type": "integer"
+                },
+                "totalSize": {
+                    "type": "integer"
+                }
+            }
+        },
+        "fare.InclusiveAddons": {
+            "type": "object",
+            "properties": {
+                "departureScheduleAddonsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.ScheduleInclusiveAddons"
+                    }
+                },
+                "returnScheduleAddonsList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.ScheduleInclusiveAddons"
+                    }
+                }
+            }
+        },
+        "fare.IntegratorFareRequest": {
+            "type": "object",
+            "properties": {
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "adult": {
+                    "type": "integer"
+                },
+                "blacklistMap": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "cabinClass": {
+                    "$ref": "#/definitions/enum.CabinType"
+                },
+                "child": {
+                    "type": "integer"
+                },
+                "corporate": {
+                    "$ref": "#/definitions/fare.Corporate"
+                },
+                "currency": {
+                    "$ref": "#/definitions/fare.Currency"
+                },
+                "departureDate": {
+                    "type": "string"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "infant": {
+                    "type": "integer"
+                },
+                "international": {
+                    "type": "integer"
+                },
+                "origin": {
+                    "type": "string"
+                },
+                "returnDate": {
+                    "type": "string"
+                },
+                "routes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Route"
+                    }
+                },
+                "source": {
+                    "$ref": "#/definitions/enum.FareRequestSource"
+                },
+                "supplierMappings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SupplierMapping"
+                    }
+                },
+                "supplierRequest": {
+                    "$ref": "#/definitions/fare.SupplierRequest"
+                },
+                "tripTypes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/github_com_tiket_TIX-FLIGHT-COMMON-MODEL-GO_model_constant_enum.TripType"
+                    }
+                }
+            }
+        },
+        "fare.OtherFare": {
+            "type": "object",
+            "properties": {
+                "fareClasses": {
+                    "type": "string"
+                },
+                "originalAdultFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                },
+                "originalChildFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                },
+                "originalInfantFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                },
+                "originalTotalFare": {
+                    "$ref": "#/definitions/model.FareDetail"
+                }
+            }
+        },
+        "fare.Route": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "departureDate": {
+                    "type": "string"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "origin": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.ScheduleInclusiveAddons": {
+            "type": "object",
+            "properties": {
+                "airline": {
+                    "type": "string"
+                },
+                "baggage": {
+                    "$ref": "#/definitions/model.Baggage"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "meal": {
+                    "type": "string"
+                }
+            }
+        },
+        "fare.SearchAvailability": {
+            "type": "object",
+            "properties": {
+                "adult": {
+                    "type": "integer"
+                },
+                "arrival": {
+                    "$ref": "#/definitions/model.ScheduleDetail"
+                },
+                "child": {
+                    "type": "integer"
+                },
+                "currency": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "departure": {
+                    "$ref": "#/definitions/model.ScheduleDetail"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "fareSellKey": {
+                    "type": "string"
+                },
+                "flighSelect": {
+                    "type": "string"
+                },
+                "flightSelect": {
+                    "type": "string"
+                },
+                "infant": {
+                    "type": "integer"
+                },
+                "journeySellKey": {
+                    "type": "string"
+                },
+                "marketingAirline": {
+                    "type": "string"
+                },
+                "origin": {
+                    "type": "string"
+                },
+                "schedules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Schedule"
+                    }
+                },
+                "seatsAvailable": {
+                    "type": "integer"
+                },
+                "totalTransit": {
+                    "type": "integer"
+                },
+                "upgradable": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "fare.SearchAvailabilityOW": {
+            "type": "object",
+            "properties": {
+                "fareSegments": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.FareSegment"
+                    }
+                },
+                "fares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Fare"
+                    }
+                },
+                "otherFares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Fare"
+                    }
+                },
+                "searchAvailability": {
+                    "$ref": "#/definitions/fare.SearchAvailability"
+                }
+            }
+        },
+        "fare.SearchAvailabilityRT": {
+            "type": "object",
+            "properties": {
+                "departureFlights": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SearchAvailabilityOW"
+                    }
+                },
+                "returnFlights": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SearchAvailabilityOW"
+                    }
+                }
+            }
+        },
+        "fare.SearchCombine": {
+            "type": "object",
+            "properties": {
+                "departureFlights": {
+                    "$ref": "#/definitions/fare.SearchAvailability"
+                },
+                "fares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Fare"
+                    }
+                },
+                "otherFares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Fare"
+                    }
+                },
+                "returnFlights": {
+                    "$ref": "#/definitions/fare.SearchAvailability"
+                }
+            }
+        },
+        "fare.SearchMulticity": {
+            "type": "object",
+            "properties": {
+                "fares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Fare"
+                    }
+                },
+                "otherFares": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Fare"
+                    }
+                },
+                "searchAvailabilities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.SearchAvailability"
+                    }
+                }
+            }
+        },
+        "fare.SupplierMapping": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/fare.Account"
+                },
+                "airlines": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "ignoreAirline": {
+                    "type": "boolean"
+                },
+                "multiFare": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "fare.SupplierRequest": {
+            "type": "object",
+            "properties": {
+                "accounts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/fare.Account"
+                    }
+                },
+                "airlines": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "{{PROVIDER}}-go-be_internal_repository.CredentialMasterData": {
+            "type": "object",
+            "properties": {
+                "defaultValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "id": {
+                    "type": "string"
+                },
+                "inputFieldType": {
+                    "type": "string"
+                },
+                "isReadOnly": {
+                    "type": "boolean"
+                },
+                "isRequired": {
+                    "type": "boolean"
+                },
+                "key": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                }
+            }
+        },
+        "{{PROVIDER}}-go-be_internal_shared_entity.Credential": {
+            "type": "object",
+            "required": [
+                "distributionType",
+                "supplier",
+                "username"
+            ],
+            "properties": {
+                "distributionType": {
+                    "type": "string"
+                },
+                "expiredDate": {
+                    "type": "string"
+                },
+                "extendedData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "isStaging": {
+                    "type": "boolean"
+                },
+                "password": {
+                    "type": "string"
+                },
+                "supplier": {
+                    "type": "string"
+                },
+                "username": {
+                    "type": "string"
+                }
+            }
+        },
+        "{{PROVIDER}}-go-be_internal_shared_entity.SystemParameter": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "variable": {
+                    "type": "string"
+                }
+            }
+        },
+        "{{PROVIDER}}-go-be_internal_shared_entity.SystemParameterRepository": {
+            "type": "object",
+            "properties": {
+                "createBy": {
+                    "type": "string"
+                },
+                "createDate": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isDeleted": {
+                    "type": "integer"
+                },
+                "updateBy": {
+                    "type": "string"
+                },
+                "updateDate": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "variable": {
+                    "type": "string"
+                },
+                "version": {
+                    "type": "integer"
+                }
+            }
+        },
+        "github_com_tiket_TIX-FLIGHT-COMMON-MODEL-GO_model_constant_enum.TripType": {
+            "type": "string",
+            "enum": [
+                "DEPARTURE",
+                "RETURN",
+                "ROUND_TRIP",
+                "ROUND_TRIP_COMBINE",
+                "MULTI_CITY"
+            ],
+            "x-enum-varnames": [
+                "DEPARTURE",
+                "RETURN",
+                "ROUND_TRIP",
+                "ROUND_TRIP_COMBINE",
+                "MULTI_CITY"
+            ]
+        },
+        "issued.BaseFare": {
+            "type": "object",
+            "properties": {
+                "adult": {
+                    "type": "number"
+                },
+                "child": {
+                    "type": "number"
+                },
+                "infant": {
+                    "type": "number"
+                }
+            }
+        },
+        "issued.Commission": {
+            "type": "object",
+            "properties": {
+                "currency": {
+                    "type": "string"
+                },
+                "type": {
+                    "$ref": "#/definitions/enum.CommissionType"
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "issued.IntegratorIssuedRequest": {
+            "type": "object",
+            "properties": {
+                "account": {
+                    "$ref": "#/definitions/fare.Account"
+                },
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "balanceDue": {
+                    "type": "number"
+                },
+                "bookingCode": {
+                    "type": "string"
+                },
+                "bookingDate": {
+                    "type": "string"
+                },
+                "commission": {
+                    "type": "number"
+                },
+                "departureDate": {
+                    "type": "string"
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "exchangeDetails": {
+                    "$ref": "#/definitions/exchange_issued.ExchangeDetails"
+                },
+                "flightSelect": {
+                    "type": "string"
+                },
+                "invoiceNumber": {
+                    "type": "string"
+                },
+                "issuanceType": {
+                    "$ref": "#/definitions/enum.IssuanceType"
+                },
+                "logId": {
+                    "type": "string"
+                },
+                "nta": {
+                    "type": "number"
+                },
+                "orderDetailId": {
+                    "type": "string"
+                },
+                "paxes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.PaxRequest"
+                    }
+                },
+                "returnDate": {
+                    "type": "string"
+                },
+                "sessionGroup": {
+                    "type": "string"
+                },
+                "sessionGroupType": {
+                    "type": "string"
+                },
+                "tourCode": {
+                    "type": "string"
+                },
+                "transactionId": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.IssuedAddons": {
+            "type": "object",
+            "properties": {
+                "baggage": {
+                    "$ref": "#/definitions/issued.IssuedBaggage"
+                },
+                "meals": {
+                    "$ref": "#/definitions/issued.IssuedMeals"
+                },
+                "medical": {
+                    "$ref": "#/definitions/issued.IssuedMedical"
+                },
+                "seats": {
+                    "$ref": "#/definitions/issued.IssuedSeats"
+                }
+            }
+        },
+        "issued.IssuedBaggage": {
+            "type": "object",
+            "properties": {
+                "departureBaggageList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedBaggageDetails"
+                    }
+                },
+                "returnBaggageList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedBaggageDetails"
+                    }
+                }
+            }
+        },
+        "issued.IssuedBaggageDetails": {
+            "type": "object",
+            "properties": {
+                "unitOfMeasure": {
+                    "type": "string"
+                },
+                "weight": {
+                    "type": "integer"
+                }
+            }
+        },
+        "issued.IssuedDetail": {
+            "type": "object",
+            "properties": {
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "bookingCode": {
+                    "type": "string"
+                },
+                "bookingCodeSabres": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ticket.BookingCodeSabre"
+                    }
+                },
+                "bookingQrCode": {
+                    "type": "string"
+                },
+                "currencyPaymentAmount": {
+                    "type": "string"
+                },
+                "distributionType": {
+                    "type": "string"
+                },
+                "exchangeResponseDetails": {
+                    "$ref": "#/definitions/exchange.ExchangeBookingDetails"
+                },
+                "issuanceType": {
+                    "$ref": "#/definitions/enum.IssuanceType"
+                },
+                "nonHoldResponse": {
+                    "$ref": "#/definitions/issued.NonHoldResponse"
+                },
+                "paxes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.PaxResponse"
+                    }
+                },
+                "paymentAmount": {
+                    "type": "number"
+                },
+                "pdfBase64": {
+                    "type": "string"
+                },
+                "sessionId": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/enum.IssuedStatus"
+                },
+                "ticketType": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.IssuedMealDetails": {
+            "type": "object",
+            "properties": {
+                "airline": {
+                    "type": "string"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "mealsLegs": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedMealLegs"
+                    }
+                },
+                "operatingAirline": {
+                    "type": "string"
+                },
+                "operatingFlightNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.IssuedMealLegs": {
+            "type": "object",
+            "properties": {
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "mealCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "issued.IssuedMeals": {
+            "type": "object",
+            "properties": {
+                "departureMeals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedMealDetails"
+                    }
+                },
+                "returnMeals": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedMealDetails"
+                    }
+                }
+            }
+        },
+        "issued.IssuedMedical": {
+            "type": "object",
+            "properties": {
+                "departureMedical": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedMedicalDetails"
+                    }
+                },
+                "returnMedical": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedMedicalDetails"
+                    }
+                }
+            }
+        },
+        "issued.IssuedMedicalDetails": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.IssuedResponse": {
+            "type": "object",
+            "properties": {
+                "additionalData": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "integratorIssuedRequest": {
+                    "$ref": "#/definitions/issued.IntegratorIssuedRequest"
+                },
+                "issuedDetail": {
+                    "$ref": "#/definitions/issued.IssuedDetail"
+                },
+                "mandatoryRequest": {
+                    "$ref": "#/definitions/common.MandatoryRequest"
+                }
+            }
+        },
+        "issued.IssuedSeatDetails": {
+            "type": "object",
+            "properties": {
+                "airline": {
+                    "type": "string"
+                },
+                "arrival": {
+                    "type": "string"
+                },
+                "departure": {
+                    "type": "string"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "operatingAirline": {
+                    "type": "string"
+                },
+                "operatingFlightNumber": {
+                    "type": "string"
+                },
+                "seatNumber": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.IssuedSeats": {
+            "type": "object",
+            "properties": {
+                "departureSeats": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedSeatDetails"
+                    }
+                },
+                "returnSeats": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.IssuedSeatDetails"
+                    }
+                }
+            }
+        },
+        "issued.NonHoldResponse": {
+            "type": "object",
+            "properties": {
+                "newBookingCode": {
+                    "type": "string"
+                },
+                "paymentDetails": {
+                    "$ref": "#/definitions/issued.PaymentDetails"
+                },
+                "remarkReason": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.OriginalBaseFare": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "currencyCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.PaxRequest": {
+            "type": "object",
+            "properties": {
+                "commission": {
+                    "$ref": "#/definitions/issued.Commission"
+                },
+                "dob": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "nationality": {
+                    "type": "string"
+                },
+                "originalCommission": {
+                    "$ref": "#/definitions/issued.Commission"
+                },
+                "passport": {
+                    "$ref": "#/definitions/book.Passport"
+                },
+                "paxNumber": {
+                    "type": "integer"
+                },
+                "pqrNumber": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.PaxResponse": {
+            "type": "object",
+            "properties": {
+                "addons": {
+                    "$ref": "#/definitions/issued.IssuedAddons"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "originalPaxName": {
+                    "type": "string"
+                },
+                "originalPricingDetails": {
+                    "$ref": "#/definitions/issued.PricingDetails"
+                },
+                "paxNumber": {
+                    "type": "integer"
+                },
+                "pqrNumber": {
+                    "type": "integer"
+                },
+                "pricingDetails": {
+                    "$ref": "#/definitions/issued.PricingDetails"
+                },
+                "ticketNumber": {
+                    "type": "string"
+                },
+                "ticketSource": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.PaymentDetails": {
+            "type": "object",
+            "properties": {
+                "baseFares": {
+                    "$ref": "#/definitions/issued.BaseFare"
+                },
+                "supplierCurrency": {
+                    "type": "string"
+                },
+                "totalBaseFare": {
+                    "type": "number"
+                },
+                "totalCommission": {
+                    "type": "number"
+                },
+                "totalNta": {
+                    "type": "number"
+                },
+                "totalOtherFare": {
+                    "type": "number"
+                }
+            }
+        },
+        "issued.PricingDetails": {
+            "type": "object",
+            "properties": {
+                "baseFare": {
+                    "type": "number"
+                },
+                "currencyCode": {
+                    "type": "string"
+                },
+                "originalBaseFare": {
+                    "$ref": "#/definitions/issued.OriginalBaseFare"
+                },
+                "priceDifference": {
+                    "type": "number"
+                },
+                "taxDetails": {
+                    "$ref": "#/definitions/issued.TaxDetails"
+                },
+                "totalFare": {
+                    "type": "number"
+                }
+            }
+        },
+        "issued.TaxBreakdown": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "paidInd": {
+                    "type": "string"
+                },
+                "taxCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "issued.TaxDetails": {
+            "type": "object",
+            "properties": {
+                "taxBreakdownList": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/issued.TaxBreakdown"
+                    }
+                },
+                "taxCode": {
+                    "type": "string"
+                },
+                "totalAmount": {
+                    "type": "number"
+                }
+            }
+        },
+        "model.Baggage": {
+            "type": "object",
+            "properties": {
+                "cabin": {
+                    "$ref": "#/definitions/model.BaggageDetail"
+                },
+                "checkIn": {
+                    "$ref": "#/definitions/model.BaggageDetail"
+                }
+            }
+        },
+        "model.BaggageDetail": {
+            "type": "object",
+            "properties": {
+                "measurement": {
+                    "type": "string"
+                },
+                "qty": {
+                    "type": "integer"
+                },
+                "unit": {
+                    "type": "string"
+                },
+                "validateBaggage": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "model.Connecting": {
+            "type": "object",
+            "properties": {
+                "airportCode": {
+                    "type": "string"
+                },
+                "arrivalDate": {
+                    "type": "string"
+                },
+                "arrivalTime": {
+                    "type": "string"
+                },
+                "connectingTime": {
+                    "type": "integer"
+                },
+                "departureDate": {
+                    "type": "string"
+                },
+                "departureTime": {
+                    "type": "string"
+                },
+                "terminal": {
+                    "type": "string"
+                },
+                "timezone": {
+                    "type": "number"
+                }
+            }
+        },
+        "model.FareBasisCode": {
+            "type": "object",
+            "properties": {
+                "adult": {
+                    "type": "string"
+                },
+                "adultBreakpoint": {
+                    "type": "boolean"
+                },
+                "child": {
+                    "type": "string"
+                },
+                "childBreakpoint": {
+                    "type": "boolean"
+                },
+                "infant": {
+                    "type": "string"
+                },
+                "infantBreakpoint": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "model.FareDetail": {
+            "type": "object",
+            "properties": {
+                "agt": {
+                    "type": "number"
+                },
+                "airportTax": {
+                    "type": "number"
+                },
+                "base": {
+                    "type": "number"
+                },
+                "breakdownTaxes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.TaxType"
+                    }
+                },
+                "commission": {
+                    "type": "number"
+                },
+                "fareBasisCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "fareClasses": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "flyThru": {
+                    "type": "number"
+                },
+                "gst": {
+                    "type": "number"
+                },
+                "iwjr": {
+                    "type": "number"
+                },
+                "markup": {
+                    "type": "number"
+                },
+                "nta": {
+                    "type": "number"
+                },
+                "penaltyInfos": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.PenaltyInfo"
+                    }
+                },
+                "privateMarkup": {
+                    "type": "number"
+                },
+                "psc": {
+                    "type": "number"
+                },
+                "scheduleFareDetailInformations": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.ScheduleFareDetailInformation"
+                    }
+                },
+                "seatAvailables": {
+                    "type": "integer"
+                },
+                "supplierDiscount": {
+                    "type": "number"
+                },
+                "tax": {
+                    "type": "number"
+                },
+                "taxBreakDowns": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    }
+                },
+                "total": {
+                    "type": "number"
+                },
+                "unidentified": {
+                    "type": "number"
+                },
+                "upselling": {
+                    "type": "number"
+                }
+            }
+        },
+        "model.PenaltyInfo": {
+            "type": "object",
+            "properties": {
+                "active": {
+                    "type": "boolean"
+                },
+                "adultPercentage": {
+                    "type": "number"
+                },
+                "amount": {
+                    "type": "number"
+                },
+                "applicability": {
+                    "type": "string"
+                },
+                "cat16Info": {
+                    "type": "boolean"
+                },
+                "childPercentage": {
+                    "type": "number"
+                },
+                "currencyCode": {
+                    "type": "string"
+                },
+                "decimalPlaces": {
+                    "type": "number"
+                },
+                "eligible": {
+                    "type": "boolean"
+                },
+                "finalAmountAdult": {
+                    "type": "number"
+                },
+                "finalAmountChild": {
+                    "type": "number"
+                },
+                "finalAmountInfant": {
+                    "type": "number"
+                },
+                "infantPercentage": {
+                    "type": "number"
+                },
+                "originalAmount": {
+                    "type": "number"
+                },
+                "originalCurrencyCode": {
+                    "type": "string"
+                },
+                "originalDecimalPlaces": {
+                    "type": "number"
+                },
+                "penaltyStatus": {
+                    "$ref": "#/definitions/enum.PenaltyStatus"
+                },
+                "penaltyType": {
+                    "$ref": "#/definitions/enum.PenaltyType"
+                }
+            }
+        },
+        "model.Schedule": {
+            "type": "object",
+            "properties": {
+                "aircraftType": {
+                    "type": "string"
+                },
+                "airline": {
+                    "type": "string"
+                },
+                "arrivalDetail": {
+                    "$ref": "#/definitions/model.ScheduleDetail"
+                },
+                "baggage": {
+                    "$ref": "#/definitions/model.Baggage"
+                },
+                "cabinClass": {
+                    "$ref": "#/definitions/enum.CabinType"
+                },
+                "connectings": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Connecting"
+                    }
+                },
+                "departureDetail": {
+                    "$ref": "#/definitions/model.ScheduleDetail"
+                },
+                "fareClass": {
+                    "type": "string"
+                },
+                "flightNumber": {
+                    "type": "string"
+                },
+                "marriageGroup": {
+                    "type": "string"
+                },
+                "meal": {
+                    "type": "string"
+                },
+                "operatingAirline": {
+                    "type": "string"
+                },
+                "operatingFlightNumber": {
+                    "type": "string"
+                },
+                "transitTime": {
+                    "type": "integer"
+                },
+                "travelTime": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.ScheduleDetail": {
+            "type": "object",
+            "properties": {
+                "airportCode": {
+                    "type": "string"
+                },
+                "date": {
+                    "type": "string"
+                },
+                "terminal": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                },
+                "timezone": {
+                    "type": "number"
+                }
+            }
+        },
+        "model.ScheduleFareDetailInformation": {
+            "type": "object",
+            "properties": {
+                "breakpoint": {
+                    "type": "boolean"
+                },
+                "destination": {
+                    "type": "string"
+                },
+                "fareBasisCode": {
+                    "type": "string"
+                },
+                "origin": {
+                    "type": "string"
+                }
+            }
+        },
+        "model.TaxType": {
+            "type": "object",
+            "properties": {
+                "amount": {
+                    "type": "number"
+                },
+                "code": {
+                    "type": "string"
+                },
+                "currencyCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "seat.SeatCategory": {
+            "type": "string",
+            "enum": [
+                "FREE",
+                "REGULAR",
+                "PREMIUM",
+                "CUSTOM_1",
+                "CUSTOM_2",
+                "CUSTOM_3",
+                "CUSTOM_4",
+                "CUSTOM_5",
+                "CUSTOM_6",
+                "CUSTOM_7",
+                "CUSTOM_8",
+                "CUSTOM_9",
+                "CUSTOM_10"
+            ],
+            "x-enum-varnames": [
+                "FREE",
+                "REGULAR",
+                "PREMIUM",
+                "CUSTOM_1",
+                "CUSTOM_2",
+                "CUSTOM_3",
+                "CUSTOM_4",
+                "CUSTOM_5",
+                "CUSTOM_6",
+                "CUSTOM_7",
+                "CUSTOM_8",
+                "CUSTOM_9",
+                "CUSTOM_10"
+            ]
+        },
+        "ticket.BookingCodeSabre": {
+            "type": "object",
+            "properties": {
+                "bookingCode": {
+                    "type": "string"
+                },
+                "flightNumber": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

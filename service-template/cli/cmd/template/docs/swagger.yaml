@@ -1,0 +1,3394 @@
+definitions:
+  book.Baggage:
+    properties:
+      departureBaggage:
+        type: integer
+      departureBaggages:
+        items:
+          $ref: '#/definitions/book.BaggageDetailBook'
+        type: array
+      returnBaggage:
+        type: integer
+      returnBaggages:
+        items:
+          $ref: '#/definitions/book.BaggageDetailBook'
+        type: array
+    type: object
+  book.BaggageDetailBook:
+    properties:
+      unitOfMeasure:
+        type: string
+      weight:
+        type: integer
+    type: object
+  book.BookBreakdownInfo:
+    properties:
+      originalAdult:
+        $ref: '#/definitions/book.BookFareDetail'
+      originalBaggage:
+        type: number
+      originalChild:
+        $ref: '#/definitions/book.BookFareDetail'
+      originalInfant:
+        $ref: '#/definitions/book.BookFareDetail'
+    type: object
+  book.BookDetail:
+    properties:
+      account:
+        $ref: '#/definitions/fare.Account'
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      bookingCode:
+        type: string
+      bookingDate:
+        type: string
+      bookingExpired:
+        type: string
+      corporateCodes:
+        items:
+          type: string
+        type: array
+      distributionType:
+        type: string
+      invoiceNumber:
+        type: string
+      itineraries:
+        items:
+          $ref: '#/definitions/book.BookItinerary'
+        type: array
+      logId:
+        type: string
+      originalBookingFare:
+        $ref: '#/definitions/book.BookFare'
+      originalCurrency:
+        type: string
+      passengerFareInfo:
+        $ref: '#/definitions/book.PassengerFareInfo'
+      transactionId:
+        type: string
+    type: object
+  book.BookFare:
+    properties:
+      adultFare:
+        type: number
+      agentFee:
+        type: number
+      balanceDue:
+        type: number
+      bookedFare:
+        type: number
+      childFare:
+        type: number
+      commission:
+        type: number
+      commissionPercent:
+        type: number
+      discount:
+        type: number
+      discountCode:
+        type: string
+      fare:
+        type: number
+      fareExcludeSsr:
+        type: number
+      incentive:
+        type: number
+      infantFare:
+        type: number
+      markup:
+        type: number
+      nta:
+        type: number
+      privateMarkup:
+        type: number
+      ssrFee:
+        $ref: '#/definitions/book.SsrFee'
+      upselling:
+        type: number
+      voucher:
+        type: number
+      voucherCode:
+        type: string
+    type: object
+  book.BookFareDetail:
+    properties:
+      agentFee:
+        type: number
+      baseFare:
+        type: number
+      breakdownTaxes:
+        items:
+          $ref: '#/definitions/model.TaxType'
+        type: array
+      commission:
+        type: number
+      discount:
+        type: number
+      fare:
+        type: number
+      iwjr:
+        type: number
+      markup:
+        type: number
+      nta:
+        type: number
+      privateMarkup:
+        type: number
+      psc:
+        type: number
+      tax:
+        type: number
+    type: object
+  book.BookItinerary:
+    properties:
+      adult:
+        type: integer
+      breakdownInfo:
+        $ref: '#/definitions/book.BookBreakdownInfo'
+      cabinClass:
+        $ref: '#/definitions/enum.CabinType'
+      child:
+        type: integer
+      infant:
+        type: integer
+      international:
+        type: integer
+      markupInfo:
+        $ref: '#/definitions/book.BookMarkupInfo'
+      originalAdultFare:
+        type: number
+      originalChildFare:
+        type: number
+      originalCurrency:
+        type: string
+      originalFare:
+        type: number
+      originalInfantFare:
+        type: number
+      schedules:
+        items:
+          $ref: '#/definitions/book.BookSchedule'
+        type: array
+    type: object
+  book.BookMarkupInfo:
+    properties:
+      classMarkup:
+        type: string
+      type:
+        type: string
+      value:
+        type: number
+    type: object
+  book.BookResponse:
+    properties:
+      bookDetail:
+        $ref: '#/definitions/book.BookDetail'
+      integratorBookRequest:
+        $ref: '#/definitions/book.IntegratorBookRequest'
+      mandatoryRequest:
+        $ref: '#/definitions/common.MandatoryRequest'
+    type: object
+  book.BookSchedule:
+    properties:
+      aircraftType:
+        type: string
+      arrivalDate:
+        type: string
+      arrivalTerminal:
+        type: string
+      baggage:
+        $ref: '#/definitions/model.Baggage'
+      connectings:
+        items:
+          $ref: '#/definitions/model.Connecting'
+        type: array
+      departureDate:
+        type: string
+      departureTerminal:
+        type: string
+      destination:
+        type: string
+      fareBasisCode:
+        type: string
+      fareBasisCodes:
+        $ref: '#/definitions/model.FareBasisCode'
+      fareClass:
+        type: string
+      isPromo:
+        type: integer
+      marketingAirline:
+        type: string
+      marketingFlightNumber:
+        type: string
+      marriageGroup:
+        type: string
+      operatingAirline:
+        $ref: '#/definitions/book.OperatingAirline'
+      origin:
+        type: string
+      stopQuantity:
+        type: string
+      supplierBookingCode:
+        type: string
+    type: object
+  book.Contact:
+    properties:
+      dob:
+        type: string
+      email:
+        type: string
+      emailAgent:
+        type: string
+      emailPassenger:
+        type: string
+      firstName:
+        type: string
+      gender:
+        type: string
+      lastName:
+        type: string
+      phoneCode:
+        type: string
+      phoneNumber:
+        type: string
+      profileId:
+        type: string
+      title:
+        type: string
+    type: object
+  book.IdentityNumber:
+    properties:
+      cipherText:
+        type: string
+      type:
+        type: string
+    type: object
+  book.IntegratorBookRequest:
+    properties:
+      account:
+        $ref: '#/definitions/fare.Account'
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      adult:
+        type: integer
+      child:
+        type: integer
+      commission:
+        type: number
+      contact:
+        $ref: '#/definitions/book.Contact'
+      corporate:
+        $ref: '#/definitions/fare.Corporate'
+      countryId:
+        type: string
+      currency:
+        type: string
+      distributionType:
+        type: string
+      fareSellKey:
+        type: string
+      flightSelect:
+        type: string
+      infant:
+        type: integer
+      itineraries:
+        items:
+          $ref: '#/definitions/book.Itinerary'
+        type: array
+      journeySellKey:
+        type: string
+      maxBookRetry:
+        type: integer
+      multiFare:
+        type: boolean
+      paxes:
+        items:
+          $ref: '#/definitions/book.Pax'
+        type: array
+      promoCode:
+        type: string
+      sessionGroup:
+        type: string
+      sessionGroupType:
+        type: string
+      viaSelect:
+        type: string
+    type: object
+  book.Itinerary:
+    properties:
+      airline:
+        type: string
+      arrival:
+        type: string
+      blacklistMap:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+      brandedFare:
+        $ref: '#/definitions/fare.BrandedFare'
+      cabinClass:
+        $ref: '#/definitions/enum.CabinType'
+      connecting:
+        type: string
+      date:
+        type: string
+      departure:
+        type: string
+      international:
+        type: integer
+      schedules:
+        items:
+          $ref: '#/definitions/book.Schedule'
+        type: array
+    type: object
+  book.Meals:
+    properties:
+      departureMeals:
+        items:
+          $ref: '#/definitions/book.MealsDetail'
+        type: array
+      returnMeals:
+        items:
+          $ref: '#/definitions/book.MealsDetail'
+        type: array
+    type: object
+  book.MealsDetail:
+    properties:
+      airline:
+        type: string
+      flightNumber:
+        type: string
+      mealsLegs:
+        items:
+          $ref: '#/definitions/book.MealsLeg'
+        type: array
+      operatingAirline:
+        type: string
+      operatingFlightNumber:
+        type: string
+    type: object
+  book.MealsLeg:
+    properties:
+      arrival:
+        type: string
+      departure:
+        type: string
+      mealsCodes:
+        items:
+          type: string
+        type: array
+    type: object
+  book.OperatingAirline:
+    properties:
+      code:
+        type: string
+      number:
+        type: string
+    type: object
+  book.PassengerFareInfo:
+    properties:
+      originalAdult:
+        $ref: '#/definitions/book.BookFareDetail'
+      originalBaggage:
+        type: number
+      originalChild:
+        $ref: '#/definitions/book.BookFareDetail'
+      originalInfant:
+        $ref: '#/definitions/book.BookFareDetail'
+    type: object
+  book.Passport:
+    properties:
+      country:
+        type: string
+      expired:
+        type: string
+      id:
+        type: string
+      issuingDate:
+        type: string
+    type: object
+  book.Pax:
+    properties:
+      baggage:
+        $ref: '#/definitions/book.Baggage'
+      dob:
+        type: string
+      firstName:
+        type: string
+      frequentFlyer:
+        type: string
+      gender:
+        type: string
+      identityNumber:
+        $ref: '#/definitions/book.IdentityNumber'
+      insurance:
+        type: boolean
+      lastName:
+        type: string
+      meals:
+        $ref: '#/definitions/book.Meals'
+      nationality:
+        type: string
+      originalFirstName:
+        type: string
+      originalLastName:
+        type: string
+      passport:
+        $ref: '#/definitions/book.Passport'
+      paxNumber:
+        type: integer
+      phoneCode:
+        type: string
+      phoneNumber:
+        type: string
+      profileId:
+        type: string
+      seats:
+        $ref: '#/definitions/book.Seats'
+      title:
+        type: string
+      travelPurpose:
+        type: string
+      type:
+        type: string
+    type: object
+  book.Schedule:
+    properties:
+      arrivalDate:
+        type: string
+      departureDate:
+        type: string
+      destination:
+        type: string
+      fareBasisCodes:
+        $ref: '#/definitions/model.FareBasisCode'
+      fareClass:
+        type: string
+      flightNumber:
+        type: string
+      marketingAirline:
+        type: string
+      marriageGroup:
+        type: string
+      operatingAirline:
+        $ref: '#/definitions/book.OperatingAirline'
+      origin:
+        type: string
+    type: object
+  book.SeatDetail:
+    properties:
+      airline:
+        type: string
+      arrival:
+        type: string
+      category:
+        $ref: '#/definitions/seat.SeatCategory'
+      deckNumber:
+        type: string
+      departure:
+        type: string
+      flightNumber:
+        type: string
+      group:
+        type: string
+      operatingAirline:
+        type: string
+      operatingFlightNumber:
+        type: string
+      seatNumber:
+        type: string
+    type: object
+  book.Seats:
+    properties:
+      departureSeats:
+        items:
+          $ref: '#/definitions/book.SeatDetail'
+        type: array
+      returnSeats:
+        items:
+          $ref: '#/definitions/book.SeatDetail'
+        type: array
+    type: object
+  book.SsrBaggagesLeg:
+    properties:
+      arrival:
+        type: string
+      departure:
+        type: string
+      fare:
+        type: number
+      success:
+        type: boolean
+      weight:
+        type: integer
+      weightType:
+        type: string
+    type: object
+  book.SsrFee:
+    properties:
+      baggageFare:
+        type: number
+      mealsFare:
+        type: number
+      medicalsFare:
+        type: number
+      seatsFare:
+        type: number
+      ssrFare:
+        type: number
+      ssrItineraries:
+        items:
+          $ref: '#/definitions/book.SsrItinerary'
+        type: array
+    type: object
+  book.SsrItinerary:
+    properties:
+      ssrPaxBaggages:
+        items:
+          $ref: '#/definitions/book.SsrPaxBaggages'
+        type: array
+      ssrPaxMeals:
+        items:
+          $ref: '#/definitions/book.SsrPaxMeals'
+        type: array
+      ssrPaxMedicals:
+        items:
+          $ref: '#/definitions/book.SsrPaxMedicals'
+        type: array
+      ssrPaxSeats:
+        items:
+          $ref: '#/definitions/book.SsrPaxSeats'
+        type: array
+    type: object
+  book.SsrMealsDetail:
+    properties:
+      mealsCode:
+        type: string
+      mealsPrice:
+        type: number
+      success:
+        type: boolean
+    type: object
+  book.SsrMealsLeg:
+    properties:
+      arrival:
+        type: string
+      departure:
+        type: string
+      ssrMealsDetails:
+        items:
+          $ref: '#/definitions/book.SsrMealsDetail'
+        type: array
+    type: object
+  book.SsrMedicalsDetail:
+    properties:
+      medicalCode:
+        type: string
+      medicalPrice:
+        type: number
+      success:
+        type: boolean
+    type: object
+  book.SsrMedicalsLeg:
+    properties:
+      arrival:
+        type: string
+      departure:
+        type: string
+      ssrMedicalsDetails:
+        items:
+          $ref: '#/definitions/book.SsrMedicalsDetail'
+        type: array
+    type: object
+  book.SsrPaxBaggages:
+    properties:
+      paxNumber:
+        type: integer
+      ssrBaggagesLegs:
+        items:
+          $ref: '#/definitions/book.SsrBaggagesLeg'
+        type: array
+    type: object
+  book.SsrPaxMeals:
+    properties:
+      paxNumber:
+        type: integer
+      ssrMealsLegs:
+        items:
+          $ref: '#/definitions/book.SsrMealsLeg'
+        type: array
+    type: object
+  book.SsrPaxMedicals:
+    properties:
+      paxNumber:
+        type: integer
+      ssrMedicalsLegs:
+        items:
+          $ref: '#/definitions/book.SsrMedicalsLeg'
+        type: array
+    type: object
+  book.SsrPaxSeats:
+    properties:
+      paxNumber:
+        type: integer
+      ssrSeatLegs:
+        items:
+          $ref: '#/definitions/book.SsrSeatsLeg'
+        type: array
+    type: object
+  book.SsrSeatsLeg:
+    properties:
+      airline:
+        type: string
+      arrival:
+        type: string
+      deckNumber:
+        type: string
+      departure:
+        type: string
+      fare:
+        type: number
+      flightNumber:
+        type: string
+      operatingAirline:
+        type: string
+      operatingFlightNumber:
+        type: string
+      seatCategory:
+        type: string
+      seatGroup:
+        type: string
+      seatNumber:
+        type: string
+      success:
+        type: boolean
+      totalFare:
+        type: number
+    type: object
+  cancel_book.IntegratorCancelBookRequest:
+    properties:
+      account:
+        $ref: '#/definitions/fare.Account'
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      bookingCode:
+        type: string
+      distributionType:
+        type: string
+      sessionGroup:
+        type: string
+      sessionGroupType:
+        type: string
+      transactionId:
+        type: string
+    type: object
+  cancelbook.CancelBookResponse:
+    properties:
+      account:
+        $ref: '#/definitions/fare.Account'
+      bookingCode:
+        type: string
+      distributionType:
+        type: string
+      integratorCancelBookRequest:
+        $ref: '#/definitions/cancel_book.IntegratorCancelBookRequest'
+      mandatoryRequest:
+        $ref: '#/definitions/common.MandatoryRequest'
+    type: object
+  common.MandatoryRequest:
+    properties:
+      channelId:
+        type: string
+      identity:
+        type: string
+      requestId:
+        type: string
+      resellerId:
+        type: string
+      serviceId:
+        type: string
+      storeId:
+        type: string
+      username:
+        type: string
+    required:
+    - channelId
+    - requestId
+    - serviceId
+    - storeId
+    - username
+    type: object
+  enum.CabinType:
+    enum:
+    - ECONOMY
+    - BUSINESS
+    - FIRST
+    - PREMIER
+    - PREMIUM_ECONOMY
+    - PREMIUM_BUSINESS
+    - PREMIUM_FIRST
+    type: string
+    x-enum-varnames:
+    - ECONOMY
+    - BUSINESS
+    - FIRST
+    - PREMIER
+    - PREMIUM_ECONOMY
+    - PREMIUM_BUSINESS
+    - PREMIUM_FIRST
+  enum.CommissionType:
+    enum:
+    - PERCENTAGE
+    - AMOUNT
+    type: string
+    x-enum-varnames:
+    - Percentage
+    - Amount
+  enum.ExchangeIssuanceNote:
+    enum:
+    - Price mismatch
+    type: string
+    x-enum-varnames:
+    - PriceMismatch
+  enum.FareRequestSource:
+    enum:
+    - FD_RM
+    - DYNAMIC_SUPPLIER_MAPPING
+    - DEFAULT_RULE
+    - SAM
+    type: string
+    x-enum-varnames:
+    - FD_RM
+    - DYNAMIC_SUPPLIER_MAPPING
+    - DEFAULT_RULE
+    - SAM
+  enum.IssuanceType:
+    enum:
+    - NORMAL
+    - EXCHANGE
+    type: string
+    x-enum-varnames:
+    - Normal
+    - Exchange
+  enum.IssuedStatus:
+    enum:
+    - SUCCESS
+    - FAILED
+    - IN_PROGRESS
+    - WAITING
+    - CANCELED
+    type: string
+    x-enum-varnames:
+    - Success
+    - Failed
+    - InProgress
+    - Waiting
+    - Canceled
+  enum.PenaltyStatus:
+    enum:
+    - "YES"
+    - "NO"
+    - UNKNOW
+    type: string
+    x-enum-varnames:
+    - PENALTY_STATUS_YES
+    - PENALTY_STATUS_NO
+    - PENALTY_STATUS_UNKNOWN
+  enum.PenaltyType:
+    enum:
+    - RESCHEDULE
+    - REFUND
+    type: string
+    x-enum-varnames:
+    - PENALTY_TYPE_RESCHEDULE
+    - PENALTY_TYPE_REFUND
+  exchange.ExchangeBookingDetails:
+    properties:
+      bookingCode:
+        type: string
+      exchangeIssuanceDelayIntervalSecs:
+        description: Paxes                             []PaxResponse             `json:"paxes"`
+        type: integer
+      expiryDateTime:
+        type: string
+      note:
+        $ref: '#/definitions/enum.ExchangeIssuanceNote'
+    type: object
+  exchange_issued.ExchangeDetails:
+    properties:
+      oldBookingCode:
+        type: string
+    type: object
+  fare.Account:
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+    type: object
+  fare.BrandedFare:
+    properties:
+      code:
+        type: string
+      name:
+        type: string
+    type: object
+  fare.Corporate:
+    properties:
+      airlines:
+        items:
+          type: string
+        type: array
+      corporateCodes:
+        items:
+          type: string
+        type: array
+      corporateId:
+        type: integer
+    type: object
+  fare.Currency:
+    properties:
+      departureCurrency:
+        type: string
+      returnCurrency:
+        type: string
+    type: object
+  fare.Fare:
+    properties:
+      brandedFare:
+        $ref: '#/definitions/fare.BrandedFare'
+      distributionType:
+        type: string
+      fareClassDetails:
+        items:
+          $ref: '#/definitions/fare.FareClassDetail'
+        type: array
+      fareClasses:
+        type: string
+      flexiFare:
+        type: boolean
+      inclusiveAddons:
+        $ref: '#/definitions/fare.InclusiveAddons'
+      originalAdultFare:
+        $ref: '#/definitions/model.FareDetail'
+      originalChildFare:
+        $ref: '#/definitions/model.FareDetail'
+      originalCurrency:
+        type: string
+      originalInfantFare:
+        $ref: '#/definitions/model.FareDetail'
+      originalTotalFare:
+        $ref: '#/definitions/model.FareDetail'
+      otherFares:
+        items:
+          $ref: '#/definitions/fare.OtherFare'
+        type: array
+      privateFare:
+        type: boolean
+      supplierId:
+        type: string
+    type: object
+  fare.FareClassDetail:
+    properties:
+      Destination:
+        type: string
+      fareClass:
+        type: string
+      origin:
+        type: string
+    type: object
+  fare.FareSegment:
+    properties:
+      airlineCode:
+        type: string
+      arrival:
+        type: string
+      departure:
+        type: string
+      fareSegmentTypes:
+        items:
+          $ref: '#/definitions/fare.FareSegmentType'
+        type: array
+      flightNumber:
+        type: string
+    type: object
+  fare.FareSegmentDetail:
+    properties:
+      agt:
+        type: number
+      airportTax:
+        type: number
+      baseFare:
+        type: number
+      commission:
+        type: number
+      fareClass:
+        type: string
+      flyThru:
+        type: number
+      gst:
+        type: number
+      iwjr:
+        type: number
+      nta:
+        type: number
+      psc:
+        type: number
+      seatAvailable:
+        type: integer
+      supplierDiscount:
+        type: number
+      tax:
+        type: number
+      total:
+        type: number
+      unidentified:
+        type: number
+    type: object
+  fare.FareSegmentType:
+    properties:
+      originalAdultFare:
+        $ref: '#/definitions/fare.FareSegmentDetail'
+      originalChildFare:
+        $ref: '#/definitions/fare.FareSegmentDetail'
+      originalCurrency:
+        type: string
+      originalInfantFare:
+        $ref: '#/definitions/fare.FareSegmentDetail'
+      originalTotalFare:
+        $ref: '#/definitions/fare.FareSegmentDetail'
+      supplierId:
+        type: string
+    type: object
+  fare.FlightIntegratorSearchResponse:
+    properties:
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      corporateCodes:
+        items:
+          type: string
+        type: array
+      departureFlights:
+        items:
+          $ref: '#/definitions/fare.SearchAvailabilityOW'
+        type: array
+      integratorFareRequest:
+        $ref: '#/definitions/fare.IntegratorFareRequest'
+      multiCities:
+        items:
+          $ref: '#/definitions/fare.SearchMulticity'
+        type: array
+      page:
+        type: integer
+      returnFlights:
+        items:
+          $ref: '#/definitions/fare.SearchAvailabilityOW'
+        type: array
+      roundTripCombines:
+        items:
+          $ref: '#/definitions/fare.SearchCombine'
+        type: array
+      roundTrips:
+        $ref: '#/definitions/fare.SearchAvailabilityRT'
+      totalPage:
+        type: integer
+      totalSize:
+        type: integer
+    type: object
+  fare.InclusiveAddons:
+    properties:
+      departureScheduleAddonsList:
+        items:
+          $ref: '#/definitions/fare.ScheduleInclusiveAddons'
+        type: array
+      returnScheduleAddonsList:
+        items:
+          $ref: '#/definitions/fare.ScheduleInclusiveAddons'
+        type: array
+    type: object
+  fare.IntegratorFareRequest:
+    properties:
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      adult:
+        type: integer
+      blacklistMap:
+        additionalProperties:
+          items:
+            type: string
+          type: array
+        type: object
+      cabinClass:
+        $ref: '#/definitions/enum.CabinType'
+      child:
+        type: integer
+      corporate:
+        $ref: '#/definitions/fare.Corporate'
+      currency:
+        $ref: '#/definitions/fare.Currency'
+      departureDate:
+        type: string
+      destination:
+        type: string
+      distributionType:
+        type: string
+      infant:
+        type: integer
+      international:
+        type: integer
+      origin:
+        type: string
+      returnDate:
+        type: string
+      routes:
+        items:
+          $ref: '#/definitions/fare.Route'
+        type: array
+      source:
+        $ref: '#/definitions/enum.FareRequestSource'
+      supplierMappings:
+        items:
+          $ref: '#/definitions/fare.SupplierMapping'
+        type: array
+      supplierRequest:
+        $ref: '#/definitions/fare.SupplierRequest'
+      tripTypes:
+        items:
+          $ref: '#/definitions/github_com_tiket_TIX-FLIGHT-COMMON-MODEL-GO_model_constant_enum.TripType'
+        type: array
+    type: object
+  fare.OtherFare:
+    properties:
+      fareClasses:
+        type: string
+      originalAdultFare:
+        $ref: '#/definitions/model.FareDetail'
+      originalChildFare:
+        $ref: '#/definitions/model.FareDetail'
+      originalInfantFare:
+        $ref: '#/definitions/model.FareDetail'
+      originalTotalFare:
+        $ref: '#/definitions/model.FareDetail'
+    type: object
+  fare.Route:
+    properties:
+      currency:
+        type: string
+      departureDate:
+        type: string
+      destination:
+        type: string
+      origin:
+        type: string
+    type: object
+  fare.ScheduleInclusiveAddons:
+    properties:
+      airline:
+        type: string
+      baggage:
+        $ref: '#/definitions/model.Baggage'
+      flightNumber:
+        type: string
+      meal:
+        type: string
+    type: object
+  fare.SearchAvailability:
+    properties:
+      adult:
+        type: integer
+      arrival:
+        $ref: '#/definitions/model.ScheduleDetail'
+      child:
+        type: integer
+      currency:
+        type: string
+      date:
+        type: string
+      departure:
+        $ref: '#/definitions/model.ScheduleDetail'
+      destination:
+        type: string
+      fareSellKey:
+        type: string
+      flighSelect:
+        type: string
+      flightSelect:
+        type: string
+      infant:
+        type: integer
+      journeySellKey:
+        type: string
+      marketingAirline:
+        type: string
+      origin:
+        type: string
+      schedules:
+        items:
+          $ref: '#/definitions/model.Schedule'
+        type: array
+      seatsAvailable:
+        type: integer
+      totalTransit:
+        type: integer
+      upgradable:
+        type: boolean
+    type: object
+  fare.SearchAvailabilityOW:
+    properties:
+      fareSegments:
+        items:
+          $ref: '#/definitions/fare.FareSegment'
+        type: array
+      fares:
+        items:
+          $ref: '#/definitions/fare.Fare'
+        type: array
+      otherFares:
+        items:
+          $ref: '#/definitions/fare.Fare'
+        type: array
+      searchAvailability:
+        $ref: '#/definitions/fare.SearchAvailability'
+    type: object
+  fare.SearchAvailabilityRT:
+    properties:
+      departureFlights:
+        items:
+          $ref: '#/definitions/fare.SearchAvailabilityOW'
+        type: array
+      returnFlights:
+        items:
+          $ref: '#/definitions/fare.SearchAvailabilityOW'
+        type: array
+    type: object
+  fare.SearchCombine:
+    properties:
+      departureFlights:
+        $ref: '#/definitions/fare.SearchAvailability'
+      fares:
+        items:
+          $ref: '#/definitions/fare.Fare'
+        type: array
+      otherFares:
+        items:
+          $ref: '#/definitions/fare.Fare'
+        type: array
+      returnFlights:
+        $ref: '#/definitions/fare.SearchAvailability'
+    type: object
+  fare.SearchMulticity:
+    properties:
+      fares:
+        items:
+          $ref: '#/definitions/fare.Fare'
+        type: array
+      otherFares:
+        items:
+          $ref: '#/definitions/fare.Fare'
+        type: array
+      searchAvailabilities:
+        items:
+          $ref: '#/definitions/fare.SearchAvailability'
+        type: array
+    type: object
+  fare.SupplierMapping:
+    properties:
+      account:
+        $ref: '#/definitions/fare.Account'
+      airlines:
+        items:
+          type: string
+        type: array
+      ignoreAirline:
+        type: boolean
+      multiFare:
+        type: boolean
+    type: object
+  fare.SupplierRequest:
+    properties:
+      accounts:
+        items:
+          $ref: '#/definitions/fare.Account'
+        type: array
+      airlines:
+        items:
+          type: string
+        type: array
+    type: object
+  {{PROVIDER}}-go-be_internal_repository.CredentialMasterData:
+    properties:
+      defaultValues:
+        items:
+          type: string
+        type: array
+      id:
+        type: string
+      inputFieldType:
+        type: string
+      isReadOnly:
+        type: boolean
+      isRequired:
+        type: boolean
+      key:
+        type: string
+      label:
+        type: string
+    type: object
+  {{PROVIDER}}-go-be_internal_shared_entity.Credential:
+    properties:
+      distributionType:
+        type: string
+      expiredDate:
+        type: string
+      extendedData:
+        additionalProperties:
+          type: string
+        type: object
+      isStaging:
+        type: boolean
+      password:
+        type: string
+      supplier:
+        type: string
+      username:
+        type: string
+    required:
+    - distributionType
+    - supplier
+    - username
+    type: object
+  {{PROVIDER}}-go-be_internal_shared_entity.SystemParameter:
+    properties:
+      description:
+        type: string
+      value:
+        type: string
+      variable:
+        type: string
+    type: object
+  {{PROVIDER}}-go-be_internal_shared_entity.SystemParameterRepository:
+    properties:
+      createBy:
+        type: string
+      createDate:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      isDeleted:
+        type: integer
+      updateBy:
+        type: string
+      updateDate:
+        type: string
+      value:
+        type: string
+      variable:
+        type: string
+      version:
+        type: integer
+    type: object
+  github_com_tiket_TIX-FLIGHT-COMMON-MODEL-GO_model_constant_enum.TripType:
+    enum:
+    - DEPARTURE
+    - RETURN
+    - ROUND_TRIP
+    - ROUND_TRIP_COMBINE
+    - MULTI_CITY
+    type: string
+    x-enum-varnames:
+    - DEPARTURE
+    - RETURN
+    - ROUND_TRIP
+    - ROUND_TRIP_COMBINE
+    - MULTI_CITY
+  issued.BaseFare:
+    properties:
+      adult:
+        type: number
+      child:
+        type: number
+      infant:
+        type: number
+    type: object
+  issued.Commission:
+    properties:
+      currency:
+        type: string
+      type:
+        $ref: '#/definitions/enum.CommissionType'
+      value:
+        type: number
+    type: object
+  issued.IntegratorIssuedRequest:
+    properties:
+      account:
+        $ref: '#/definitions/fare.Account'
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      balanceDue:
+        type: number
+      bookingCode:
+        type: string
+      bookingDate:
+        type: string
+      commission:
+        type: number
+      departureDate:
+        type: string
+      distributionType:
+        type: string
+      exchangeDetails:
+        $ref: '#/definitions/exchange_issued.ExchangeDetails'
+      flightSelect:
+        type: string
+      invoiceNumber:
+        type: string
+      issuanceType:
+        $ref: '#/definitions/enum.IssuanceType'
+      logId:
+        type: string
+      nta:
+        type: number
+      orderDetailId:
+        type: string
+      paxes:
+        items:
+          $ref: '#/definitions/issued.PaxRequest'
+        type: array
+      returnDate:
+        type: string
+      sessionGroup:
+        type: string
+      sessionGroupType:
+        type: string
+      tourCode:
+        type: string
+      transactionId:
+        type: string
+    type: object
+  issued.IssuedAddons:
+    properties:
+      baggage:
+        $ref: '#/definitions/issued.IssuedBaggage'
+      meals:
+        $ref: '#/definitions/issued.IssuedMeals'
+      medical:
+        $ref: '#/definitions/issued.IssuedMedical'
+      seats:
+        $ref: '#/definitions/issued.IssuedSeats'
+    type: object
+  issued.IssuedBaggage:
+    properties:
+      departureBaggageList:
+        items:
+          $ref: '#/definitions/issued.IssuedBaggageDetails'
+        type: array
+      returnBaggageList:
+        items:
+          $ref: '#/definitions/issued.IssuedBaggageDetails'
+        type: array
+    type: object
+  issued.IssuedBaggageDetails:
+    properties:
+      unitOfMeasure:
+        type: string
+      weight:
+        type: integer
+    type: object
+  issued.IssuedDetail:
+    properties:
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      bookingCode:
+        type: string
+      bookingCodeSabres:
+        items:
+          $ref: '#/definitions/ticket.BookingCodeSabre'
+        type: array
+      bookingQrCode:
+        type: string
+      currencyPaymentAmount:
+        type: string
+      distributionType:
+        type: string
+      exchangeResponseDetails:
+        $ref: '#/definitions/exchange.ExchangeBookingDetails'
+      issuanceType:
+        $ref: '#/definitions/enum.IssuanceType'
+      nonHoldResponse:
+        $ref: '#/definitions/issued.NonHoldResponse'
+      paxes:
+        items:
+          $ref: '#/definitions/issued.PaxResponse'
+        type: array
+      paymentAmount:
+        type: number
+      pdfBase64:
+        type: string
+      sessionId:
+        type: string
+      status:
+        $ref: '#/definitions/enum.IssuedStatus'
+      ticketType:
+        type: string
+    type: object
+  issued.IssuedMealDetails:
+    properties:
+      airline:
+        type: string
+      flightNumber:
+        type: string
+      mealsLegs:
+        items:
+          $ref: '#/definitions/issued.IssuedMealLegs'
+        type: array
+      operatingAirline:
+        type: string
+      operatingFlightNumber:
+        type: string
+    type: object
+  issued.IssuedMealLegs:
+    properties:
+      arrival:
+        type: string
+      departure:
+        type: string
+      mealCodes:
+        items:
+          type: string
+        type: array
+    type: object
+  issued.IssuedMeals:
+    properties:
+      departureMeals:
+        items:
+          $ref: '#/definitions/issued.IssuedMealDetails'
+        type: array
+      returnMeals:
+        items:
+          $ref: '#/definitions/issued.IssuedMealDetails'
+        type: array
+    type: object
+  issued.IssuedMedical:
+    properties:
+      departureMedical:
+        items:
+          $ref: '#/definitions/issued.IssuedMedicalDetails'
+        type: array
+      returnMedical:
+        items:
+          $ref: '#/definitions/issued.IssuedMedicalDetails'
+        type: array
+    type: object
+  issued.IssuedMedicalDetails:
+    properties:
+      name:
+        type: string
+    type: object
+  issued.IssuedResponse:
+    properties:
+      additionalData:
+        additionalProperties:
+          type: string
+        type: object
+      integratorIssuedRequest:
+        $ref: '#/definitions/issued.IntegratorIssuedRequest'
+      issuedDetail:
+        $ref: '#/definitions/issued.IssuedDetail'
+      mandatoryRequest:
+        $ref: '#/definitions/common.MandatoryRequest'
+    type: object
+  issued.IssuedSeatDetails:
+    properties:
+      airline:
+        type: string
+      arrival:
+        type: string
+      departure:
+        type: string
+      flightNumber:
+        type: string
+      operatingAirline:
+        type: string
+      operatingFlightNumber:
+        type: string
+      seatNumber:
+        type: string
+    type: object
+  issued.IssuedSeats:
+    properties:
+      departureSeats:
+        items:
+          $ref: '#/definitions/issued.IssuedSeatDetails'
+        type: array
+      returnSeats:
+        items:
+          $ref: '#/definitions/issued.IssuedSeatDetails'
+        type: array
+    type: object
+  issued.NonHoldResponse:
+    properties:
+      newBookingCode:
+        type: string
+      paymentDetails:
+        $ref: '#/definitions/issued.PaymentDetails'
+      remarkReason:
+        type: string
+    type: object
+  issued.OriginalBaseFare:
+    properties:
+      amount:
+        type: number
+      currencyCode:
+        type: string
+    type: object
+  issued.PaxRequest:
+    properties:
+      commission:
+        $ref: '#/definitions/issued.Commission'
+      dob:
+        type: string
+      firstName:
+        type: string
+      gender:
+        type: string
+      lastName:
+        type: string
+      nationality:
+        type: string
+      originalCommission:
+        $ref: '#/definitions/issued.Commission'
+      passport:
+        $ref: '#/definitions/book.Passport'
+      paxNumber:
+        type: integer
+      pqrNumber:
+        type: integer
+      title:
+        type: string
+      type:
+        type: string
+    type: object
+  issued.PaxResponse:
+    properties:
+      addons:
+        $ref: '#/definitions/issued.IssuedAddons'
+      name:
+        type: string
+      originalPaxName:
+        type: string
+      originalPricingDetails:
+        $ref: '#/definitions/issued.PricingDetails'
+      paxNumber:
+        type: integer
+      pqrNumber:
+        type: integer
+      pricingDetails:
+        $ref: '#/definitions/issued.PricingDetails'
+      ticketNumber:
+        type: string
+      ticketSource:
+        type: string
+      type:
+        type: string
+    type: object
+  issued.PaymentDetails:
+    properties:
+      baseFares:
+        $ref: '#/definitions/issued.BaseFare'
+      supplierCurrency:
+        type: string
+      totalBaseFare:
+        type: number
+      totalCommission:
+        type: number
+      totalNta:
+        type: number
+      totalOtherFare:
+        type: number
+    type: object
+  issued.PricingDetails:
+    properties:
+      baseFare:
+        type: number
+      currencyCode:
+        type: string
+      originalBaseFare:
+        $ref: '#/definitions/issued.OriginalBaseFare'
+      priceDifference:
+        type: number
+      taxDetails:
+        $ref: '#/definitions/issued.TaxDetails'
+      totalFare:
+        type: number
+    type: object
+  issued.TaxBreakdown:
+    properties:
+      amount:
+        type: number
+      paidInd:
+        type: string
+      taxCode:
+        type: string
+    type: object
+  issued.TaxDetails:
+    properties:
+      taxBreakdownList:
+        items:
+          $ref: '#/definitions/issued.TaxBreakdown'
+        type: array
+      taxCode:
+        type: string
+      totalAmount:
+        type: number
+    type: object
+  model.Baggage:
+    properties:
+      cabin:
+        $ref: '#/definitions/model.BaggageDetail'
+      checkIn:
+        $ref: '#/definitions/model.BaggageDetail'
+    type: object
+  model.BaggageDetail:
+    properties:
+      measurement:
+        type: string
+      qty:
+        type: integer
+      unit:
+        type: string
+      validateBaggage:
+        type: boolean
+    type: object
+  model.Connecting:
+    properties:
+      airportCode:
+        type: string
+      arrivalDate:
+        type: string
+      arrivalTime:
+        type: string
+      connectingTime:
+        type: integer
+      departureDate:
+        type: string
+      departureTime:
+        type: string
+      terminal:
+        type: string
+      timezone:
+        type: number
+    type: object
+  model.FareBasisCode:
+    properties:
+      adult:
+        type: string
+      adultBreakpoint:
+        type: boolean
+      child:
+        type: string
+      childBreakpoint:
+        type: boolean
+      infant:
+        type: string
+      infantBreakpoint:
+        type: boolean
+    type: object
+  model.FareDetail:
+    properties:
+      agt:
+        type: number
+      airportTax:
+        type: number
+      base:
+        type: number
+      breakdownTaxes:
+        items:
+          $ref: '#/definitions/model.TaxType'
+        type: array
+      commission:
+        type: number
+      fareBasisCodes:
+        items:
+          type: string
+        type: array
+      fareClasses:
+        items:
+          type: string
+        type: array
+      flyThru:
+        type: number
+      gst:
+        type: number
+      iwjr:
+        type: number
+      markup:
+        type: number
+      nta:
+        type: number
+      penaltyInfos:
+        items:
+          $ref: '#/definitions/model.PenaltyInfo'
+        type: array
+      privateMarkup:
+        type: number
+      psc:
+        type: number
+      scheduleFareDetailInformations:
+        items:
+          $ref: '#/definitions/model.ScheduleFareDetailInformation'
+        type: array
+      seatAvailables:
+        type: integer
+      supplierDiscount:
+        type: number
+      tax:
+        type: number
+      taxBreakDowns:
+        additionalProperties:
+          type: string
+        type: object
+      total:
+        type: number
+      unidentified:
+        type: number
+      upselling:
+        type: number
+    type: object
+  model.PenaltyInfo:
+    properties:
+      active:
+        type: boolean
+      adultPercentage:
+        type: number
+      amount:
+        type: number
+      applicability:
+        type: string
+      cat16Info:
+        type: boolean
+      childPercentage:
+        type: number
+      currencyCode:
+        type: string
+      decimalPlaces:
+        type: number
+      eligible:
+        type: boolean
+      finalAmountAdult:
+        type: number
+      finalAmountChild:
+        type: number
+      finalAmountInfant:
+        type: number
+      infantPercentage:
+        type: number
+      originalAmount:
+        type: number
+      originalCurrencyCode:
+        type: string
+      originalDecimalPlaces:
+        type: number
+      penaltyStatus:
+        $ref: '#/definitions/enum.PenaltyStatus'
+      penaltyType:
+        $ref: '#/definitions/enum.PenaltyType'
+    type: object
+  model.Schedule:
+    properties:
+      aircraftType:
+        type: string
+      airline:
+        type: string
+      arrivalDetail:
+        $ref: '#/definitions/model.ScheduleDetail'
+      baggage:
+        $ref: '#/definitions/model.Baggage'
+      cabinClass:
+        $ref: '#/definitions/enum.CabinType'
+      connectings:
+        items:
+          $ref: '#/definitions/model.Connecting'
+        type: array
+      departureDetail:
+        $ref: '#/definitions/model.ScheduleDetail'
+      fareClass:
+        type: string
+      flightNumber:
+        type: string
+      marriageGroup:
+        type: string
+      meal:
+        type: string
+      operatingAirline:
+        type: string
+      operatingFlightNumber:
+        type: string
+      transitTime:
+        type: integer
+      travelTime:
+        type: integer
+    type: object
+  model.ScheduleDetail:
+    properties:
+      airportCode:
+        type: string
+      date:
+        type: string
+      terminal:
+        type: string
+      time:
+        type: string
+      timezone:
+        type: number
+    type: object
+  model.ScheduleFareDetailInformation:
+    properties:
+      breakpoint:
+        type: boolean
+      destination:
+        type: string
+      fareBasisCode:
+        type: string
+      origin:
+        type: string
+    type: object
+  model.TaxType:
+    properties:
+      amount:
+        type: number
+      code:
+        type: string
+      currencyCode:
+        type: string
+    type: object
+  seat.SeatCategory:
+    enum:
+    - FREE
+    - REGULAR
+    - PREMIUM
+    - CUSTOM_1
+    - CUSTOM_2
+    - CUSTOM_3
+    - CUSTOM_4
+    - CUSTOM_5
+    - CUSTOM_6
+    - CUSTOM_7
+    - CUSTOM_8
+    - CUSTOM_9
+    - CUSTOM_10
+    type: string
+    x-enum-varnames:
+    - FREE
+    - REGULAR
+    - PREMIUM
+    - CUSTOM_1
+    - CUSTOM_2
+    - CUSTOM_3
+    - CUSTOM_4
+    - CUSTOM_5
+    - CUSTOM_6
+    - CUSTOM_7
+    - CUSTOM_8
+    - CUSTOM_9
+    - CUSTOM_10
+  ticket.BookingCodeSabre:
+    properties:
+      bookingCode:
+        type: string
+      flightNumber:
+        type: string
+    type: object
+info:
+  contact:
+    name: '@supplyTeam'
+  description: Swagger tools for FLYJAYA integrator
+  title: {{SERVICE_TITLE}}
+  version: "1.0"
+paths:
+  /application/health:
+    get:
+      consumes:
+      - application/json
+      description: Endpoint to check health service
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "500":
+          description: Internal Server Error
+      summary: Endpoint to check health service
+      tags:
+      - health
+  /{{BASE_PATH}}/booking:
+    post:
+      consumes:
+      - application/json
+      description: endpoint for booking process
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/book.IntegratorBookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/book.BookResponse'
+        "400":
+          description: Bad Request
+      summary: Booking endpoint
+      tags:
+      - prime-booking
+  /{{BASE_PATH}}/cancel-booking:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint for Cancel Booking process
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/cancel_book.IntegratorCancelBookRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/cancelbook.CancelBookResponse'
+        "400":
+          description: Bad Request
+      summary: Cancel-Booking endpoint
+      tags:
+      - prime-booking
+  /{{BASE_PATH}}/credential:
+    get:
+      consumes:
+      - application/json
+      description: Find credential with paginated
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - default: 0
+        description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      - default: 10
+        description: Size
+        in: query
+        name: size
+        required: true
+        type: integer
+      - default: ID
+        description: Sort
+        enum:
+        - ID
+        - SUPPLIER
+        - USERNAME
+        - DISTRIBUTION
+        in: query
+        name: sort
+        required: true
+        type: string
+      - default: DESC
+        description: Sort Direction
+        enum:
+        - ASC
+        - DESC
+        in: query
+        name: sortDirection
+        required: true
+        type: string
+      - in: query
+        name: distributionType
+        type: string
+      - in: query
+        name: supplier
+        type: string
+      - in: query
+        name: username
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to find credential with paginated
+      tags:
+      - credential
+    post:
+      consumes:
+      - application/json
+      description: Create credential
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.Credential'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to create credential
+      tags:
+      - credential
+  /{{BASE_PATH}}/credential-master-data:
+    get:
+      consumes:
+      - application/json
+      description: Find all credential master data map
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to find all credential master data map
+      tags:
+      - credential-master-data
+    post:
+      consumes:
+      - application/json
+      description: endpoint for creting the credential master data
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/{{PROVIDER}}-go-be_internal_repository.CredentialMasterData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Create credential master data endpoint
+      tags:
+      - credential-master-data
+  /{{BASE_PATH}}/credential-master-data/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete credential master data by id
+      parameters:
+      - description: ID Credential Master Data
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to delete credential master data by id
+      tags:
+      - credential-master-data
+    put:
+      consumes:
+      - application/json
+      description: Update credential master data by id
+      parameters:
+      - description: ID credential master data
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/{{PROVIDER}}-go-be_internal_repository.CredentialMasterData'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to update credential master data by id
+      tags:
+      - credential-master-data
+  /{{BASE_PATH}}/credential-master-data/list:
+    get:
+      consumes:
+      - application/json
+      description: Find all credential master data list
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to find all credential master data list
+      tags:
+      - credential-master-data
+  /{{BASE_PATH}}/credential/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete credential by id
+      parameters:
+      - description: ID credential
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to delete credential by id
+      tags:
+      - credential
+    get:
+      consumes:
+      - application/json
+      description: Find credential by id
+      parameters:
+      - description: ID credential
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to find credential by id
+      tags:
+      - credential
+    put:
+      consumes:
+      - application/json
+      description: Update credential by id
+      parameters:
+      - description: ID credential
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.Credential'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to update credential by id
+      tags:
+      - credential
+  /{{BASE_PATH}}/credential/alert:
+    get:
+      consumes:
+      - application/json
+      description: Find credential log by id
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to send the alert
+      tags:
+      - credential
+  /{{BASE_PATH}}/credential/log/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Find credential log by id
+      parameters:
+      - description: ID credential
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      summary: Endpoint to find credential log by id
+      tags:
+      - credential
+  /{{BASE_PATH}}/issued:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint for issued process
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/issued.IntegratorIssuedRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/issued.IssuedResponse'
+        "400":
+          description: Bad Request
+        "500":
+          description: Internal Server Error
+      summary: Issued endpoint
+      tags:
+      - prime-booking
+  /{{BASE_PATH}}/search:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint for search process
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/fare.IntegratorFareRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/fare.FlightIntegratorSearchResponse'
+        "400":
+          description: Bad Request
+      summary: Search endpoint
+      tags:
+      - prime-booking
+  /{{BASE_PATH}}/system-parameter:
+    get:
+      consumes:
+      - application/json
+      description: Find all system parameter
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - default: 10
+        description: Limit
+        in: query
+        name: limit
+        required: true
+        type: integer
+      - default: 0
+        description: Page
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      tags:
+      - system_parameter
+    post:
+      consumes:
+      - application/json
+      description: Create system parameter
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      tags:
+      - system_parameter
+  /{{BASE_PATH}}/system-parameter/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete system parameter by id
+      parameters:
+      - description: ID system parameter
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      tags:
+      - system_parameter
+    get:
+      consumes:
+      - application/json
+      description: Find system parameter by id
+      parameters:
+      - description: ID system parameter
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameterRepository'
+        "400":
+          description: Bad Request
+      tags:
+      - system_parameter
+    put:
+      consumes:
+      - application/json
+      description: Update system parameter by id
+      parameters:
+      - description: ID system parameter
+        in: path
+        name: id
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameter'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "400":
+          description: Bad Request
+      tags:
+      - system_parameter
+  /{{BASE_PATH}}/system-parameter/variable/{variable}:
+    get:
+      consumes:
+      - application/json
+      description: Find system parameter by id
+      parameters:
+      - description: ID system parameter
+        in: path
+        name: variable
+        required: true
+        type: string
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/{{PROVIDER}}-go-be_internal_shared_entity.SystemParameterRepository'
+        "400":
+          description: Bad Request
+      tags:
+      - system_parameter
+  /{{BASE_PATH}}/v2/search:
+    post:
+      consumes:
+      - application/json
+      description: Endpoint for search process
+      parameters:
+      - default: TIKETCOM
+        description: Authentication header
+        in: header
+        name: storeId
+        required: true
+        type: string
+      - default: WEB
+        description: Authentication header
+        in: header
+        name: channelId
+        required: true
+        type: string
+      - default: "321321321"
+        description: Authentication header
+        in: header
+        name: requestId
+        required: true
+        type: string
+      - default: guest
+        description: Authentication header
+        in: header
+        name: username
+        required: true
+        type: string
+      - default: GATEWAY
+        description: Authentication header
+        in: header
+        name: serviceId
+        required: true
+        type: string
+      - description: Authentication header
+        in: header
+        name: resellerId
+        type: string
+      - description: Authentication header
+        in: header
+        name: identity
+        type: string
+      - description: Request Body
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/fare.IntegratorFareRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/fare.FlightIntegratorSearchResponse'
+        "400":
+          description: Bad Request
+      summary: Search endpoint
+      tags:
+      - prime-booking
+swagger: "2.0"
