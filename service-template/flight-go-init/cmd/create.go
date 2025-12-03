@@ -7,6 +7,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"os/exec"
 
 	"github.com/spf13/cobra"
 )
