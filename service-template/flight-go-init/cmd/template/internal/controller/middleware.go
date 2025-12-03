@@ -6,7 +6,6 @@ import (
 	"time"
 	"{{MODULE_NAME}}/internal/shared/deps"
 
-	"github.com/labstack/echo/v4"
 	"github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/log/logrus"
 	"github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/shared"
 	"github.com/tiket/TIX-HOTEL-UTILITIES-GO/metrics"
