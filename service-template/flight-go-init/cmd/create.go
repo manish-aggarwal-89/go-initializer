@@ -66,14 +66,23 @@ var createCmd = &cobra.Command{
 		}
 
     // Step 3: run make swagger
-    cmdMake := exec.Command("make", "swagger")
-    cmdMake.Dir = project // run in the generated project folder
-    cmdMake.Stdout = os.Stdout
-    cmdMake.Stderr = os.Stderr
+  cmdSwag := exec.Command("swag", "init", "-g", fmt.Sprintf("./cmd/%s/main.go", provider), "--parseInternal", "--parseDependency")
+  cmdSwag.Dir = project
+  cmdSwag.Stdout = os.Stdout
+  cmdSwag.Stderr = os.Stderr
+  if err := cmdSwag.Run(); err != nil {
+      return fmt.Errorf("failed to run swag init: %w", err)
+  }
 
-    if err := cmdMake.Run(); err != nil {
-        return fmt.Errorf("failed to run 'make swagger': %w", err)
-    }
+  // optional: run swag fmt
+  cmdSwagFmt := exec.Command("swag", "fmt", "-g", fmt.Sprintf("./cmd/%s/main.go", provider))
+  cmdSwagFmt.Dir = project
+  cmdSwagFmt.Stdout = os.Stdout
+  cmdSwagFmt.Stderr = os.Stderr
+  if err := cmdSwagFmt.Run(); err != nil {
+      return fmt.Errorf("failed to run swag fmt: %w", err)
+  }
+
 
     fmt.Println("Swagger generated successfully!")
 
