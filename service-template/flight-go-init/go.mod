@@ -1,4 +1,4 @@
-module github.com/manish-aggarwal-89/go-initializer/service-template/cli
+module github.com/manish-aggarwal-89/go-initializer/service-template/flight-go-init
 
 go 1.22
 
