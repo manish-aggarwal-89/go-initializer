@@ -12,9 +12,9 @@ import (
 	"net/http"
 	"{{MODULE_NAME}}/internal/service"
 	"{{MODULE_NAME}}/internal/shared"
+	"{{MODULE_NAME}}/internal/shared/util"
 	"{{MODULE_NAME}}/internal/shared/bau"
 	"{{MODULE_NAME}}/internal/shared/deps"
-	"github.com/labstack/echo/v4"
 )
 
 type BookingController struct {
