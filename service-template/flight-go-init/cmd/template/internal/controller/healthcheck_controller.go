@@ -6,6 +6,7 @@ import (
 	"{{MODULE_NAME}}/internal/shared/deps"
 
 	"github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/common"
+	"github.com/labstack/echo/v4"
 )
 
 type (

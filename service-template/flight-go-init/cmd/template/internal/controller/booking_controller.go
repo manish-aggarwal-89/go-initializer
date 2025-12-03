@@ -14,6 +14,7 @@ import (
 	"{{MODULE_NAME}}/internal/shared"
 	"{{MODULE_NAME}}/internal/shared/bau"
 	"{{MODULE_NAME}}/internal/shared/deps"
+	"github.com/labstack/echo/v4"
 )
 
 type BookingController struct {

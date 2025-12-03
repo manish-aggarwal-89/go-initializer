@@ -9,6 +9,7 @@ import (
 	"github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/log/logrus"
 	"github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/shared"
 	"github.com/tiket/TIX-HOTEL-UTILITIES-GO/metrics"
+	"github.com/labstack/echo/v4"
 )
 
 func HawkEyeAPIInbound(deps deps.Deps) echo.MiddlewareFunc {

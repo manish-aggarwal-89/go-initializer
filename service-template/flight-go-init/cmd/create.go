@@ -64,6 +64,18 @@ var createCmd = &cobra.Command{
 			fmt.Println("No requirements.txt found, skipping go.mod generation")
 		}
 
+    // Step 3: run make swagger
+    cmdMake := exec.Command("make", "swagger")
+    cmdMake.Dir = project // run in the generated project folder
+    cmdMake.Stdout = os.Stdout
+    cmdMake.Stderr = os.Stderr
+
+    if err := cmdMake.Run(); err != nil {
+        return fmt.Errorf("failed to run 'make swagger': %w", err)
+    }
+
+    fmt.Println("Swagger generated successfully!")
+
 		fmt.Println("Project generated successfully!")
 		return nil
 	},

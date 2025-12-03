@@ -9,6 +9,7 @@ import (
 	"{{MODULE_NAME}}/internal/shared"
 	"{{MODULE_NAME}}/internal/shared/deps"
 	"{{MODULE_NAME}}/internal/shared/util"
+	"github.com/labstack/echo/v4"
 
 	commonModel "github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/common"
 )

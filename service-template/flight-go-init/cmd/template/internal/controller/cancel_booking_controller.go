@@ -8,6 +8,7 @@ import (
 	"{{MODULE_NAME}}/internal/shared"
 	"{{MODULE_NAME}}/internal/shared/deps"
 	"{{MODULE_NAME}}/internal/shared/util"
+	"github.com/labstack/echo/v4"
 
 	commonUtil "github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/shared/util"
 

@@ -12,7 +12,8 @@ import (
 	"{{MODULE_NAME}}/internal/shared/dto"
 	"{{MODULE_NAME}}/internal/shared/entity"
 	"{{MODULE_NAME}}/internal/shared/util"
-
+	"github.com/labstack/echo/v4"
+	"github.com/go-playground/validator/v10"
 	commonModel "github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/common"
 )
 

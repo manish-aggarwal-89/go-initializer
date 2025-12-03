@@ -10,6 +10,7 @@ import (
 	"{{MODULE_NAME}}/internal/shared/bau"
 	"{{MODULE_NAME}}/internal/shared/deps"
 	"{{MODULE_NAME}}/internal/shared/util"
+	"github.com/labstack/echo/v4"
 
 	commonUtil "github.com/tiket/TIX-FLIGHT-COMMON-LIB-GO/shared/util"
 	"github.com/tiket/TIX-FLIGHT-COMMON-MODEL-GO/model/common"

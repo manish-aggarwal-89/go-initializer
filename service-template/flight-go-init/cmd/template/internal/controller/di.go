@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo/v4/middleware"
 
 	echoSwagger "github.com/swaggo/echo-swagger"
+	"github.com/labstack/echo/v4"
 
 	"github.com/pkg/errors"
 	"go.uber.org/dig"
