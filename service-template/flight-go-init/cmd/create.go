@@ -7,12 +7,16 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+
 	"github.com/spf13/cobra"
 )
 
 var (
-	//go:embed template/**
+	//go:embed all:template
 	templateFS embed.FS
+
+	//go:embed all:template2
+	template2FS embed.FS
 
 	provider             string
 	moduleName           string
@@ -22,18 +26,50 @@ var (
 	configPropertyStruct string
 	dbName               string
 	supplierCode         string
+	templateName         string
 )
+
+type templateInfo struct {
+	fs      embed.FS
+	rootDir string
+	desc    string
+}
+
+var templates = map[string]templateInfo{
+	"template1": {
+		fs:      templateFS,
+		rootDir: "template",
+		desc:    "Legacy template using hotel-utilities library with custom config structs",
+	},
+	"template2": {
+		fs:      template2FS,
+		rootDir: "template2",
+		desc:    "Latest template using common-deps (COMMON-LIB-GO, COMMON-MODEL-GO) with dig DI, Echo, MongoDB migrations, BAU analytics, and error mapper",
+	},
+}
 
 var createCmd = &cobra.Command{
 	Use:   "create [project]",
 	Short: "Create a new microservice from template",
-	Args:  cobra.ExactArgs(1),
+	Long: `Create a new microservice from a selected template.
+
+Available templates:
+  template1  -  Legacy template using hotel-utilities library with custom config structs
+  template2  -  Latest template using common-deps (COMMON-LIB-GO, COMMON-MODEL-GO) with
+                 dig DI, Echo, MongoDB migrations, BAU analytics, and error mapper`,
+	Args: cobra.ExactArgs(1),
 
 	RunE: func(cmd *cobra.Command, args []string) error {
 		project := args[0]
-		fmt.Println("Generating project:", project)
 
-		// placeholder replacements
+		tmpl, ok := templates[templateName]
+		if !ok {
+			return fmt.Errorf("unknown template %q, available: template1, template2", templateName)
+		}
+
+		fmt.Printf("Generating project: %s (using %s)\n", project, templateName)
+		fmt.Printf("  Template: %s\n", tmpl.desc)
+
 		replacements := map[string]string{
 			"{{PROVIDER}}":               provider,
 			"{{MODULE_NAME}}":            moduleName,
@@ -45,13 +81,11 @@ var createCmd = &cobra.Command{
 			"{{SUPPLIER_CODE}}":          supplierCode,
 		}
 
-		// Step 1: copy template files
-		err := copyTemplate(project, replacements)
+		err := copyTemplate(project, replacements, tmpl.fs, tmpl.rootDir)
 		if err != nil {
 			return fmt.Errorf("failed to copy template: %w", err)
 		}
 
-		// Step 2: generate go.mod from requirements.txt if it exists
 		reqPath := filepath.Join(project, "requirements.txt")
 		if _, err := os.Stat(reqPath); err == nil {
 			err = generateGoModFromRequirements(reqPath, project)
@@ -59,9 +93,8 @@ var createCmd = &cobra.Command{
 				return fmt.Errorf("failed to generate go.mod: %w", err)
 			}
 			fmt.Println("go.mod created from requirements.txt")
-		} else {
-			fmt.Println("No requirements.txt found, skipping go.mod generation")
 		}
+
 		fmt.Println("Project generated successfully!")
 		return nil
 	},
@@ -116,16 +149,18 @@ func generateGoModFromRequirements(reqFile, projectDir string) error {
 func init() {
 	rootCmd.AddCommand(createCmd)
 
-	createCmd.Flags().StringVar(&provider, "provider", "", "Provider name")
-	createCmd.Flags().StringVar(&moduleName, "module-name", "", "Module name")
-	createCmd.Flags().StringVar(&serviceName, "service-name", "", "Service name")
-	createCmd.Flags().StringVar(&serviceTitle, "service-title", "", "Service Title")
-	createCmd.Flags().StringVar(&basePath, "base-path", "", "Base API Path")
-	createCmd.Flags().StringVar(&configPropertyStruct, "config-property-struct", "", "Config struct name")
-	createCmd.Flags().StringVar(&dbName, "db-name", "", "Database name")
-	createCmd.Flags().StringVar(&supplierCode, "supplier-code", "", "Supplier code")
+	createCmd.Flags().StringVar(&templateName, "template", "template1", `Template to use for project generation:
+  template1  - Legacy template using hotel-utilities library with custom config structs
+  template2  - Latest template using common-deps (COMMON-LIB-GO) with dig DI, Echo, MongoDB migrations, BAU analytics`)
+	createCmd.Flags().StringVar(&provider, "provider", "", "Provider name (e.g. trigana-go)")
+	createCmd.Flags().StringVar(&moduleName, "module-name", "", "Go module name (e.g. trigana-go-be)")
+	createCmd.Flags().StringVar(&serviceName, "service-name", "", "Service/binary name (e.g. TIX-FLIGHT-TRIGANA-INTEGRATOR-GO-BE)")
+	createCmd.Flags().StringVar(&serviceTitle, "service-title", "", "Service title for Swagger (e.g. TRIGANA GO INTEGRATOR BE)")
+	createCmd.Flags().StringVar(&basePath, "base-path", "", "Base API path (e.g. tix-flight-trigana-go-integrator)")
+	createCmd.Flags().StringVar(&configPropertyStruct, "config-property-struct", "", "Config struct name (e.g. TriganaConfigProperties)")
+	createCmd.Flags().StringVar(&dbName, "db-name", "", "Database name (e.g. flight_trigana_integrator)")
+	createCmd.Flags().StringVar(&supplierCode, "supplier-code", "", "Supplier code (e.g. tiketcomTrigana)")
 
-	// required flags
 	createCmd.MarkFlagRequired("provider")
 	createCmd.MarkFlagRequired("module-name")
 	createCmd.MarkFlagRequired("service-name")
@@ -136,15 +171,15 @@ func init() {
 	createCmd.MarkFlagRequired("supplier-code")
 }
 
-func copyTemplate(dest string, vars map[string]string) error {
-	return fs.WalkDir(templateFS, "template", func(path string, d fs.DirEntry, err error) error {
+func copyTemplate(dest string, vars map[string]string, fsys embed.FS, rootDir string) error {
+	return fs.WalkDir(fsys, rootDir, func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err
 		}
 
-		// Compute relative path + apply replacements
-		rel := strings.TrimPrefix(path, "template")
+		rel := strings.TrimPrefix(path, rootDir)
 		rel = applyReplacements(rel, vars)
+		rel = strings.TrimSuffix(rel, ".tmpl")
 
 		target := filepath.Join(dest, rel)
 
@@ -152,13 +187,11 @@ func copyTemplate(dest string, vars map[string]string) error {
 			return os.MkdirAll(target, 0755)
 		}
 
-		// Read file content
-		data, err := templateFS.ReadFile(path)
+		data, err := fsys.ReadFile(path)
 		if err != nil {
 			return err
 		}
 
-		// Replace variables inside file
 		content := applyReplacements(string(data), vars)
 
 		return os.WriteFile(target, []byte(content), 0644)

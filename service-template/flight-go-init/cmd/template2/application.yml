@@ -1,0 +1,95 @@
+# specify env var as
+# http_server_port: ${PORT}
+
+http_server_port: 8859 # local port for testing
+service_name: {{SERVICE_NAME}}
+distribution_type: lionVedaleon
+currency: "IDR"
+baggage_unit_of_measure: "KG"
+max_baggage_weight: 30
+
+is_staging: true
+
+statsd:
+  address: localhost
+  port: 8125
+
+log:
+  level: DEBUG
+  formatter: JSON
+
+issued_config:
+  dummy_issued: false
+
+kafka:
+  flight:
+    version: 1.1.1
+    host:
+      - "127.0.0.1:9092"
+    read_interval: 500ms
+    capture_metric: true
+    read_timeout: 3s
+    consumer_group: "com.tiket.tix.flight.{{PROVIDER}}.integrator"
+    core_pool: 32
+  general:
+    version: 1.1.1
+    host:
+      - "localhost:9092"
+    read_interval: 500ms
+    capture_metric: true
+    read_timeout: 3s
+    consumer_group: "com.tiket.tix.flight.{{PROVIDER}}.general.integrator"
+    core_pool: 1
+  topic:
+    integrator_search_response: "com.tiket.tix.flight.integrator.searchResponse"
+    integrator_search_request: "com.tiket.tix.flight.search.searchRequest"
+    analytic_bau_booking: "com.tiket.tix.flight.analytic.integrator.booking"
+    analytic_bau_search: "com.tiket.tix.flight.analytic.integrator.search"
+    analytic_bau_issued: "com.tiket.tix.flight.analytic.integrator.issued"
+    analytic_bau_log: "com.tiket.tix.flight.analytic.integratorLog"
+
+redis:
+  integrator:
+    password: ""
+    address:
+      - "localhost:6379"
+    pool_size: 4
+    min_idle_conn: 2
+    capture_metric: true
+    dial_timeout: 3s
+    pool_timeout: 3s
+    read_timeout: 3s
+    write_timeout: 3s
+    max_conn_age: 30m
+
+mongo:
+  integrator:
+    uri: "mongodb://localhost:27017"
+    db_name: {{DB_NAME}}
+    connection_timeout: 3s
+    max_pool: 4
+    min_pool: 2
+
+cache:
+  default_ttl_duration: 1h
+  default_cleanup_interval_duration: 1h
+
+scheduler:
+  credential_interval_secs: "600"
+  system_parameter_interval_secs: 600
+
+currency_v1:
+  cache_key_currency_prefix_integrator: com.tiket.tix.{{PROVIDER}}.integrator
+  cache_currency_ttl_v1: 1440
+
+outbound:
+  supplier:
+    # staging
+    base_url: "https://f0api-test.avantik.io"
+    # production
+    # base_url: "https://b1_api.avantik.io"
+
+default_currency: "IDR"
+context_timeout: 4
+default_timezone: "Asia/Jakarta"
+booking_expired_time_limit: 30
