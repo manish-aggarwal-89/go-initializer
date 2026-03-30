@@ -1,0 +1,20 @@
+# all: false
+dir: "{{.InterfaceDir}}"
+filename: "mock_{{ .InterfaceName | snakecase }}.go"
+formatter: goimports
+recursive: true
+template: testify
+template-schema: "{{.Template}}.schema.json"
+packages:
+  {{MODULE_NAME}}:
+    config:
+      all: true
+  # You can specify per package per interface.
+  # You can use this way so that only changed interface will be generated in your local, not all mock files will be generated.
+  # reference: schedule-builder-service
+  # {{MODULE_NAME}}/internal/service:
+  #   interfaces:
+  #     SearchProcessorService:
+  #     BookingProcessorService:
+  #     IssuedProcessorService:
+  #     CancelBookingProcessorService:

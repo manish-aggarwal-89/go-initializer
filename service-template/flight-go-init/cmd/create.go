@@ -18,6 +18,9 @@ var (
 	//go:embed all:template2
 	template2FS embed.FS
 
+	//go:embed all:template3
+	template3FS embed.FS
+
 	provider             string
 	moduleName           string
 	serviceName          string
@@ -46,6 +49,11 @@ var templates = map[string]templateInfo{
 		rootDir: "template2",
 		desc:    "Latest template using common-deps (COMMON-LIB-GO, COMMON-MODEL-GO) with dig DI, Echo, MongoDB migrations, BAU analytics, and error mapper",
 	},
+	"template3": {
+		fs:      template3FS,
+		rootDir: "template3",
+		desc:    "Latest template with rule-supplier registry pattern, processor-based services, smart swagger gen, and streamlined project structure",
+	},
 }
 
 var createCmd = &cobra.Command{
@@ -56,7 +64,9 @@ var createCmd = &cobra.Command{
 Available templates:
   template1  -  Legacy template using hotel-utilities library with custom config structs
   template2  -  Latest template using common-deps (COMMON-LIB-GO, COMMON-MODEL-GO) with
-                 dig DI, Echo, MongoDB migrations, BAU analytics, and error mapper`,
+                 dig DI, Echo, MongoDB migrations, BAU analytics, and error mapper
+  template3  -  Latest template with rule-supplier registry pattern, processor-based services,
+                 smart swagger gen, and streamlined project structure`,
 	Args: cobra.ExactArgs(1),
 
 	RunE: func(cmd *cobra.Command, args []string) error {
@@ -64,7 +74,7 @@ Available templates:
 
 		tmpl, ok := templates[templateName]
 		if !ok {
-			return fmt.Errorf("unknown template %q, available: template1, template2", templateName)
+			return fmt.Errorf("unknown template %q, available: template1, template2, template3", templateName)
 		}
 
 		fmt.Printf("Generating project: %s (using %s)\n", project, templateName)
@@ -151,7 +161,8 @@ func init() {
 
 	createCmd.Flags().StringVar(&templateName, "template", "template1", `Template to use for project generation:
   template1  - Legacy template using hotel-utilities library with custom config structs
-  template2  - Latest template using common-deps (COMMON-LIB-GO) with dig DI, Echo, MongoDB migrations, BAU analytics`)
+  template2  - Latest template using common-deps (COMMON-LIB-GO) with dig DI, Echo, MongoDB migrations, BAU analytics
+  template3  - Latest template with rule-supplier registry, processor services, smart swagger gen`)
 	createCmd.Flags().StringVar(&provider, "provider", "", "Provider name (e.g. trigana-go)")
 	createCmd.Flags().StringVar(&moduleName, "module-name", "", "Go module name (e.g. trigana-go-be)")
 	createCmd.Flags().StringVar(&serviceName, "service-name", "", "Service/binary name (e.g. TIX-FLIGHT-TRIGANA-INTEGRATOR-GO-BE)")
